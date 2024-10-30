@@ -6,9 +6,9 @@ const {
   login,
   logout,
   signupAsOwner,
-  approveDoctor,
-  cancelDoctor,
-  loginAsDoctor,
+  approveOwner,
+  cancelOwner,
+  loginAsOwner,
   forgotPassword,
   resetPassword,
   changePassword,
@@ -20,21 +20,10 @@ const {
 } = require("../middleware/authValidationJWT");
 
 // for signing up
-routes.post(
-  "/auth/signup",
-  // userValidator.create,
-  authValidator.create,
-  signup
-  //   (req, res) => res.send("hello")
-);
+routes.post("/auth/signup", authValidator.create, signup);
 
 // for signing up as doctor
-routes.post(
-  "/auth/signup-as-owner",
-  // userValidator.create,
-  authValidator.create,
-  signupAsOwner
-);
+routes.post("/auth/signup-as-owner", authValidator.create, signupAsOwner);
 
 routes.post(
   "/auth/verify-email",
@@ -65,27 +54,27 @@ routes.post(
 
 // for approving doctor
 routes.post(
-  "/auth/approve-doctor",
+  "/auth/approve-owner",
   // userValidator.create,
   // authValidator.create,
   isAuthorizedAdmin,
-  approveDoctor
+  approveOwner
 );
 
 // for canceling doctor
 routes.post(
-  "/auth/cancel-doctor",
+  "/auth/cancel-owner",
   // userValidator.create,
   // authValidator.create,
   isAuthorizedAdmin,
-  cancelDoctor
+  cancelOwner
 );
 
 // for logging in
 routes.post("/auth/login", authValidator.login, login);
 
 // for logging in
-routes.post("/auth/login-as-doctor", authValidator.login, loginAsDoctor);
+routes.post("/auth/login-as-owner", authValidator.login, loginAsOwner);
 
 // for logging in
 routes.post("/auth/logout", logout);

@@ -16,17 +16,11 @@ const signup = async (req, res) => {
         .send(failure("Failed to register", validation[0].msg));
     }
     const { firstName, lastName, email, password, phone } = req.body;
-    // if (req.body.role === "admin") {
-    //   return res
-    //     .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
-    //     .send(failure(`Admin cannot be signed up`));
-    // }
-
-    // if (!req.body.email || !req.body.password) {
-    //   return res
-    //     .status(HTTP_STATUS.BAD_REQUEST)
-    //     .send(failure("please provide mail and password"));
-    // }
+    if (req.body.role === "admin") {
+      return res
+        .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
+        .send(failure(`Admin cannot be signed up`));
+    }
 
     const emailCheck = await User.findOne({ email });
 
@@ -145,23 +139,23 @@ const signupAsOwner = async (req, res) => {
 
     if (emailCheck) {
       emailCheck.ownerApplicationStatus = "pending";
-      const emailVerifyCode = generateRandomCode(4); //4 digits
-      emailCheck.emailVerifyCode = emailVerifyCode;
-      await emailCheck.save();
 
-      if (!emailCheck.emailVerified) {
-        const emailData = {
-          email: emailCheck.email,
-          subject: "Account Activation & Owner Application Successful Email",
-          html: `
+      const emailVerifyCode = generateRandomCode(4); //4 digits
+
+      emailCheck.emailVerifyCode = emailVerifyCode;
+      const emailData = {
+        email: emailCheck.email,
+        subject: "Investor Application Email",
+        html: `
                         <h1>Hello, ${emailCheck?.firstName || "User"}</h1>
-                        <p>Congrats, you have successfully applied to become an owner</p>
-                        <p>Your email verification code is <h3>${emailVerifyCode}</h3></p>
+                        <p>Congrats, you have successfully applied to become an investor</p>
+                        <p>Your email verification code is <strong>${emailVerifyCode}</strong></p>
                         <p>Please wait for admin's approval</p>
                       `,
-        };
-        emailWithNodemailerGmail(emailData);
-      }
+      };
+      emailWithNodemailerGmail(emailData);
+
+      await emailCheck.save();
 
       const newNotification = await Notification.create({
         applicant: emailCheck._id,
@@ -184,14 +178,14 @@ const signupAsOwner = async (req, res) => {
         await admin.save();
       }
 
-      return res
-        .status(HTTP_STATUS.OK)
-        .send(
-          success("You have successfully applied for the doctor's position")
-        );
+      return res.status(HTTP_STATUS.OK).send(
+        success("You have successfully applied for the owner's position", {
+          user: emailCheck,
+        })
+      );
     }
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
       firstName: firstName,
@@ -214,13 +208,12 @@ const signupAsOwner = async (req, res) => {
     await newUser.save();
     const emailData = {
       email: email,
-      subject: "Account Activation & Owner Application Successful Email",
+      subject: "Investor Application Successful Email",
       html: `
-                    <h1>Hello, ${newUser?.firstName || "User"}</h1>
-                    <p>Congrats, you have successfully applied to become an owner</p>
-                    <p>Your email verification code is <h3>${emailVerifyCode}</h3></p>
-                    
-                  `,
+              <h1>Hello, ${newUser?.firstName || "User"}</h1>
+              <p>Congrats, you have successfully applied to become an investor</p>
+              <p>Your email verification code is <h3>${emailVerifyCode}</h3></p>      
+              `,
     };
     emailWithNodemailerGmail(emailData);
 
@@ -245,14 +238,11 @@ const signupAsOwner = async (req, res) => {
       await admin.save();
     }
 
-    res
-      .status(HTTP_STATUS.OK)
-      .send(
-        success(
-          "Account created successfully & applied for doctor's position",
-          { user: newUser }
-        )
-      );
+    res.status(HTTP_STATUS.OK).send(
+      success("Account created successfully & applied for owner's position", {
+        user: newUser,
+      })
+    );
   } catch (err) {
     console.log(err);
     return res
@@ -298,14 +288,14 @@ const verifyEmail = async (req, res) => {
   }
 };
 
-const approveDoctor = async (req, res) => {
+const approveOwner = async (req, res) => {
   try {
-    const { doctorId } = req.body; // doctorId of the user who applied
+    const { ownerId } = req.body; // OwnerId of the user who applied
 
-    if (!doctorId) {
+    if (!ownerId) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("Please provide doctorId"));
+        .send(failure("Please provide ownerId"));
     }
 
     if (!req.user) {
@@ -314,59 +304,54 @@ const approveDoctor = async (req, res) => {
         .send(failure("Unauthorized! Admin access only"));
     }
 
-    const doctor = await User.findById(doctorId);
+    const owner = await User.findById(ownerId);
     const admin = await User.findOne({ email: req.user.email });
 
-    if (!doctor) {
+    if (!owner) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
         .send(failure("User does not exist"));
     }
 
-    // if (doctor.doctorApplicationStatus !== "pending") {
-    //   return res
-    //     .status(HTTP_STATUS.BAD_REQUEST)
-    //     .send(failure("User did not apply for the doctor's position"));
-    // }
-
-    doctor.doctorApplicationStatus = "approved";
-    doctor.isDoctor = true;
-    doctor.role = "doctor";
-    await doctor.save();
+    owner.ownerApplicationStatus = "approved";
+    owner.isOwner = true;
+    owner.role.push("owner");
+    await owner.save();
 
     const emailData = {
-      email: doctor.email,
-      subject: "Application Approved - Welcome to Our Medical Team!",
+      email: owner.email,
+      subject: "Application Approved - Welcome to Our Platform!",
       html: `
             <html>
               <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-                <h2 style="color: #4CAF50;">Congratulations, Dr. ${
-                  doctor.name || "User"
+                <h2 style="color: #4CAF50;">Congratulations, ${
+                  owner.firstName || "Dear Invesor"
                 }!</h2>
-                <p>We are pleased to inform you that your application to join our medical team has been <strong>approved</strong>.</p>
+                <p>We are delighted to inform you that your application to become an investor on our platform has been <strong>approved</strong>.</p>
                 
-                <p>Thank you for choosing to collaborate with us, and we look forward to working with you to provide top-notch care to our patients.</p>
+                <p>You are now able to post your property listings and offer services directly to our users. We appreciate your decision to partner with us and look forward to your success on our platform.</p>
                 
-                <p>Below are some important next steps to get started:</p>
+                <p>Here are the next steps to get started:</p>
                 <ul>
-                  <li>Complete your profile in the doctor’s portal.</li>
-                  <li>Review our policies and guidelines.</li>
+                  <li>Log in to your account and complete your profile.</li>
+                  <li>Explore the property owner’s dashboard to manage your listings and services.</li>
+                  <li>Review our policies and guidelines to ensure a seamless experience.</li>
                 </ul>
 
-                <p>If you have any questions, feel free to reach out to us at any time.</p>
+                <p>If you have any questions or need support, please don’t hesitate to reach out to us.</p>
 
                 <p>Sincerely,<br/>
-                <strong>My Doctor Clinic</strong><br/>
-                <a href="mailto:support@mydoctorclinic.com">support@mydoctorclinic.com</a></p>
+                <strong>Appartali</strong><br/>
+                <a href="mailto:support@appartali.com">support@appartali.com</a></p>
               </body>
             </html>
           `,
     };
     emailWithNodemailerGmail(emailData);
 
-    // Create a new notification for the admin doctor
+    // Create a new notification for the admin Owner
     const newNotification = await Notification.create({
-      applicant: doctor._id,
+      applicant: owner._id,
       admin: admin._id,
       status: "approved",
       message: `your application has been approved.`,
@@ -378,30 +363,30 @@ const approveDoctor = async (req, res) => {
         .send(failure("Could not send notification"));
     }
 
-    doctor.notifications.push(newNotification._id);
-    await doctor.save();
+    owner.notifications.push(newNotification._id);
+    await owner.save();
 
     admin.notifications.push(newNotification._id);
     await admin.save();
 
     return res
       .status(HTTP_STATUS.OK)
-      .send(success("Doctor application approved", doctor));
+      .send(success("Owner application approved", owner));
   } catch (err) {
     return res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
-      .send(failure("Failed to approve doctor"));
+      .send(failure("Failed to approve Owner"));
   }
 };
 
-const cancelDoctor = async (req, res) => {
+const cancelOwner = async (req, res) => {
   try {
-    const { doctorId } = req.body;
+    const { ownerId } = req.body;
 
-    if (!doctorId) {
+    if (!ownerId) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("Please provide doctorId"));
+        .send(failure("Please provide ownerId"));
     }
 
     if (!req.user) {
@@ -410,60 +395,58 @@ const cancelDoctor = async (req, res) => {
         .send(failure("Unauthorized! Admin access only"));
     }
 
-    const doctor = await User.findById(doctorId);
+    const owner = await User.findById(ownerId);
     const admin = await User.findOne({ email: req.user.email });
 
-    if (!doctor) {
+    if (!owner) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("User not found"));
+        .send(failure("owner not found"));
     }
 
     if (
-      doctor.doctorApplicationStatus === "cancelled" ||
-      doctor.doctorApplicationStatus === "notApplied"
+      owner.ownerApplicationStatus === "cancelled" ||
+      owner.ownerApplicationStatus === "notApplied"
     ) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("User did not apply for doctor's position yet"));
+        .send(failure("User did not apply for owner's position yet"));
     }
 
-    doctor.doctorApplicationStatus = "cancelled";
-    doctor.isDoctor = false;
-    doctor.role = "patient";
+    owner.ownerApplicationStatus = "cancelled";
+    owner.isOwner = false;
+    owner.role = owner.role.filter((role) => role != "owner");
+    await owner.save();
 
     const emailData = {
-      email: doctor.email,
-      subject: "Application Status - Doctor Application",
+      email: owner.email,
+      subject: "Application Update - Request to Become an Investor",
       html: `
           <html>
             <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-              <h2 style="color: #f44336;">Dear Dr. ${
-                doctor.name || "User"
-              },</h2>
-              <p>We regret to inform you that after careful review, your application to join our medical team has been <strong>declined</strong> at this time.</p>
+              <h2 style="color: #FF6F61;">Application Status Update</h2>
+              <p>Dear ${owner.firstName || "Applicant"},</p>
               
-              <p>We appreciate your interest in collaborating with us. Unfortunately, we are unable to proceed with your application due to the current needs and requirements of our team.</p>
+              <p>Thank you for your interest in becoming an investor on our platform. After careful consideration, we regret to inform you that your application was not approved at this time.</p>
               
-              <p>If you have any questions or would like further clarification, please do not hesitate to reach out. We encourage you to reapply in the future as new opportunities may become available.</p>
-
-              <p>Thank you once again for your interest, and we wish you success in your future endeavors.</p>
-
-              <p>Sincerely,<br/>
-              <strong>My Doctor Clinic</strong><br/>
-              <a href="mailto:support@mydoctorclinic.com">support@mydoctorclinic.com</a></p>
+              <p>We encourage you to review our application guidelines and policies, as you are welcome to reapply in the future should your circumstances change.</p>
+              
+              <p>If you have any questions about the decision or our platform, please feel free to reach out. We appreciate your understanding and thank you for your interest in partnering with us.</p>
+              
+              <p>Warm regards,<br/>
+              <strong>Appartali</strong><br/>
+              <a href="mailto:support@appartali.com">support@appartali.com</a></p>
             </body>
           </html>
-                  `,
+        `,
     };
     emailWithNodemailerGmail(emailData);
-    console.log(doctor.email);
 
-    await doctor.save();
+    await owner.save();
 
     // Create a new notification for the admin doctor
     const newNotification = await Notification.create({
-      applicant: doctor._id,
+      applicant: owner._id,
       admin: admin._id,
       status: "cancelled",
       message: `your application has been cancelled.`,
@@ -475,15 +458,15 @@ const cancelDoctor = async (req, res) => {
         .send(failure("Could not send notification"));
     }
 
-    doctor.notifications.push(newNotification._id);
-    await doctor.save();
+    owner.notifications.push(newNotification._id);
+    await owner.save();
 
     admin.notifications.push(newNotification._id);
     await admin.save();
 
     return res
       .status(HTTP_STATUS.OK)
-      .send(success("Doctor application cancelled", doctor));
+      .send(success("Owner application cancelled", owner));
   } catch (err) {
     return res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
@@ -497,15 +480,12 @@ const login = async (req, res) => {
     if (validation.length > 0) {
       return res
         .status(HTTP_STATUS.OK)
-        .send(failure("Failed to register", validation[0].msg));
+        .send(failure("Failed to login", validation[0].msg));
     }
     const { email, password } = req.body;
 
     // fetching the fields
     const user = await User.findOne({ email }).select("+password");
-
-    // object conversion
-    const userObj = user.toObject();
 
     // when the user doesnt exist or pass dont match
     if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -521,11 +501,6 @@ const login = async (req, res) => {
 
     // deleting unnecessary fields
     user.password = undefined;
-    delete userObj.password;
-    delete userObj.isLocked;
-    delete userObj.createdAt;
-    delete userObj.updatedAt;
-    delete userObj.__v;
 
     res.setHeader("Authorization", token);
     return res
@@ -538,22 +513,18 @@ const login = async (req, res) => {
   }
 };
 
-const loginAsDoctor = async (req, res) => {
+const loginAsOwner = async (req, res) => {
   try {
-    const { email, password } = req.body;
-
-    // check if email & pass exist
-    if (!email || !password) {
+    const validation = validationResult(req).array();
+    if (validation.length > 0) {
       return res
-        .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("please provide mail and password"));
+        .status(HTTP_STATUS.OK)
+        .send(failure("Failed to login", validation[0].msg));
     }
+    const { email, password } = req.body;
 
     // fetching the fields
     const user = await User.findOne({ email }).select("+password");
-
-    // object conversion
-    const userObj = user.toObject();
 
     // when the user doesnt exist or pass dont match
     if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -562,7 +533,7 @@ const loginAsDoctor = async (req, res) => {
         .send(failure("wrong email or password"));
     }
 
-    if (user.doctorApplicationStatus === "pending") {
+    if (user.ownerApplicationStatus === "pending") {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
         .send(
@@ -570,7 +541,7 @@ const loginAsDoctor = async (req, res) => {
         );
     }
 
-    if (user.doctorApplicationStatus === "cancelled") {
+    if (user.ownerApplicationStatus === "cancelled") {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
         .send(
@@ -583,20 +554,33 @@ const loginAsDoctor = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
 
-    // deleting unnecessary fields
-    user.password = undefined;
-    delete userObj.password;
-    delete userObj.wrongAttempts;
-    delete userObj.isLocked;
-    delete userObj.lockedTill;
-    delete userObj.createdAt;
-    delete userObj.updatedAt;
-    delete userObj.__v;
-
     res.setHeader("Authorization", token);
     return res
       .status(HTTP_STATUS.OK)
       .send(success("Logged in successfully", { user, token }));
+  } catch (err) {
+    return res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send(failure("Internal server error"));
+  }
+};
+
+const loginSocial = async (req, res) => {
+  try {
+    const validation = validationResult(req).array();
+    if (validation.length > 0) {
+      return res
+        .status(HTTP_STATUS.OK)
+        .send(failure("Failed to login", validation[0].msg));
+    }
+    const { email, password } = req.body;
+    const token = jwt.sign(req.user.toObject(), process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+    res.setHeader("Authorization", token);
+    return res
+      .status(HTTP_STATUS.OK)
+      .send(success("Logged in successfully", req.user));
   } catch (err) {
     return res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
@@ -756,10 +740,10 @@ const changePassword = async (req, res) => {
 module.exports = {
   signup,
   signupAsOwner,
-  approveDoctor,
-  cancelDoctor,
+  approveOwner,
+  cancelOwner,
   login,
-  loginAsDoctor,
+  loginAsOwner,
   logout,
   verifyEmail,
   forgotPassword,
