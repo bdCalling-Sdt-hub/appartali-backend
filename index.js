@@ -15,7 +15,7 @@ const PaymentRouter = require("./routes/payment.route");
 const ReviewRouter = require("./routes/review.route");
 const termsOfServiceRouter = require("./routes/termsOfService.route");
 const faqRouter = require("./routes/faq.route");
-const prescriptionRouter = require("./routes/prescription.route");
+const categoryRouter = require("./routes/category.route");
 const tipRouter = require("./routes/tip.route");
 
 const app = express();
@@ -51,11 +51,12 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use("/users", UserRouter);
 app.use("/users", AuthRouter);
+app.use("/auth", AuthRouter);
 app.use("/service", ServiceRouter);
 app.use("/appointment", AppointmentRouter);
 app.use("/payment", PaymentRouter);
 app.use("/note", NoteRouter);
-app.use("/prescription", prescriptionRouter);
+app.use("/category", categoryRouter);
 app.use("/chats", ChatRouter);
 app.use("/review", ReviewRouter);
 app.use("/terms-of-service", termsOfServiceRouter);
