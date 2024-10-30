@@ -54,7 +54,11 @@ const deleteCategory = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send(failure("id is required"));
     }
-    const category = await Category.findByIdAndDelete(req.params.id);
+    const category = await Category.findByIdAndUpdate(
+      req.params.id,
+      { isDeleted: true },
+      { new: true }
+    );
     return res
       .status(HTTP_STATUS.OK)
       .send(success("Category deleted", category));
