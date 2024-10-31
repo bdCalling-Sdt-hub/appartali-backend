@@ -2,7 +2,7 @@ const express = require("express");
 const routes = express();
 const {
   createRoom,
-  //   getAllServices,
+  getAllRooms,
   //   getServiceById,
   //   getServiceByDoctorId,
   //   updateServiceById,
@@ -24,12 +24,12 @@ routes.post(
   createRoom
 );
 
-// routes.get(
-//   "/get-all-services",
-//   // userValidator.create,
-//   // authValidator.create,
-//   getAllServices
-// );
+routes.get(
+  "/get-all-rooms",
+  // userValidator.create,
+  // authValidator.create,
+  getAllRooms
+);
 
 // routes.get(
 //   "/get-service-by-id/:id",

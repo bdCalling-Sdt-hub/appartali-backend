@@ -73,4 +73,17 @@ const createRoom = async (req, res) => {
   }
 };
 
-module.exports = { createRoom };
+const getAllRooms = async (req, res) => {
+  try {
+    const rooms = await Room.find();
+    res
+      .status(HTTP_STATUS.OK)
+      .send({ success: true, message: "Rooms fetched successfully", rooms });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
+module.exports = { createRoom, getAllRooms };
