@@ -190,10 +190,38 @@ const updateRoom = async (req, res) => {
   }
 };
 
+const deleteRoomById = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please provide room id" });
+    }
+    const room = await Room.findByIdAndUpdate(
+      req.params.id,
+      { isDeleted: true },
+      { new: true }
+    );
+    if (!room) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send({ success: false, message: "Room not found" });
+    }
+    res
+      .status(HTTP_STATUS.OK)
+      .send({ success: true, message: "Room deleted successfully", room });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
 module.exports = {
   createRoom,
   getAllRooms,
   getRoomById,
   getRoomsByOwner,
   updateRoom,
+  deleteRoomById,
 };

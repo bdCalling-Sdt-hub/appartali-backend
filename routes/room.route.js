@@ -6,7 +6,7 @@ const {
   getRoomById,
   getRoomsByOwner,
   updateRoom,
-  //   deleteServiceById,
+  deleteRoomById,
   //   disableServiceById,
   //   enableServiceById,
   //   approveServiceById,
@@ -46,13 +46,7 @@ routes.put(
   updateRoom
 );
 
-// routes.delete(
-//   "/delete-service-by-id/:id",
-//   // userValidator.create,
-//   // authValidator.create,
-//   isAuthorizedAdmin,
-//   deleteServiceById
-// );
+routes.delete("/delete-room-by-id/:id", isAuthorizedUser, deleteRoomById);
 
 // routes.patch(
 //   "/disable-service-by-id/:id",
