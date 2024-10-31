@@ -45,12 +45,22 @@ const roomSchema = new Schema(
         ref: "Service",
       },
     ],
-    rating: {
-      type: Number,
-      min: 0,
-      max: 5,
-      default: 0,
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+    bookings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Booking",
+      },
+    ],
     totalRatings: {
       type: Number,
       default: 0,

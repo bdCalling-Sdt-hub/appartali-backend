@@ -13,12 +13,15 @@ const {
   //   cancelServiceById,
 } = require("../controller/room.controller");
 const fileUpload = require("../middleware/fileUpload");
-const { isAuthorizedAdmin } = require("../middleware/authValidationJWT");
+const {
+  isAuthorizedAdmin,
+  isAuthorizedUser,
+} = require("../middleware/authValidationJWT");
 const { roomValidator } = require("../middleware/validation");
 
 routes.post(
   "/add-room",
-  isAuthorizedAdmin,
+  isAuthorizedUser,
   fileUpload(),
   roomValidator.create,
   createRoom

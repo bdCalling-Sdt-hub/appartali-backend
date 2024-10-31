@@ -13,6 +13,12 @@ const createRoom = async (req, res) => {
         .status(HTTP_STATUS.OK)
         .send(failure("Failed to add room", validation[0].msg));
     }
+    const userId = req.user._id;
+    if (!userId) {
+      return res
+        .status(HTTP_STATUS.OK)
+        .send(failure("please login first", "User not found"));
+    }
     const {
       category,
       location,
@@ -25,18 +31,6 @@ const createRoom = async (req, res) => {
       endDate,
     } = req.body;
 
-    console.log(
-      category,
-      location,
-      roomCount,
-      description,
-      pricePerNight,
-      maxGuests,
-      image,
-      startDate,
-      endDate
-    );
-
     const newRoom = new Room({
       category,
       location,
@@ -46,6 +40,7 @@ const createRoom = async (req, res) => {
       maxGuests,
       startDate,
       endDate,
+      owner: userId,
       images: image && image.length ? image : [],
     });
 
