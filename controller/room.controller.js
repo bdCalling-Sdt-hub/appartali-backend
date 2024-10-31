@@ -99,4 +99,101 @@ const getRoomById = async (req, res) => {
   }
 };
 
-module.exports = { createRoom, getAllRooms, getRoomById };
+const getRoomsByOwner = async (req, res) => {
+  try {
+    if (!req.user || !req.user._id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please login first" });
+    }
+    const rooms = await Room.find({ owner: req.user._id }).populate("owner");
+    res
+      .status(HTTP_STATUS.OK)
+      .send({ success: true, message: "Rooms fetched successfully", rooms });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
+const updateRoom = async (req, res) => {
+  try {
+    const validation = validationResult(req).array();
+    if (validation.length) {
+      return res
+        .status(HTTP_STATUS.OK)
+        .send(failure("Failed to update room", validation[0].msg));
+    }
+    if (!req.user || !req.user._id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please login first" });
+    }
+    if (!req.params.id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please provide room id" });
+    }
+    const room = await Room.findById(req.params.id);
+
+    if (!room) {
+      return res
+        .status(HTTP_STATUS.OK)
+        .send({ success: false, message: "Room not found" });
+    }
+    console.log("req.user._id", req.user._id);
+    console.log("room.owner", room.owner);
+    if (room.owner.toString() !== req.user._id.toString()) {
+      return res
+        .status(HTTP_STATUS.OK)
+        .send({ success: false, message: "You are not authorized" });
+    }
+
+    const {
+      category,
+      location,
+      roomCount,
+      description,
+      pricePerNight,
+      maxGuests,
+      startDate,
+      endDate,
+    } = req.body;
+
+    room.category = category || room.category;
+    room.location = location || room.location;
+    room.roomCount = roomCount || room.roomCount;
+    room.description = description || room.description;
+    room.pricePerNight = pricePerNight || room.pricePerNight;
+    room.maxGuests = maxGuests || room.maxGuests;
+    room.startDate = startDate || room.startDate;
+    room.endDate = endDate || room.endDate;
+
+    if (req.files && req.files["productImage"]) {
+      const imageFileNames = req.files.productImage.map(
+        (file) => `/uploads/${file.filename}`
+      );
+      room.images = [...room.images, ...imageFileNames];
+    }
+
+    await room.save();
+
+    res
+      .status(HTTP_STATUS.OK)
+      .send({ success: true, message: "Room updated successfully", room });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
+module.exports = {
+  createRoom,
+  getAllRooms,
+  getRoomById,
+  getRoomsByOwner,
+  updateRoom,
+};

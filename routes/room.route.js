@@ -4,8 +4,8 @@ const {
   createRoom,
   getAllRooms,
   getRoomById,
-  //   getServiceByDoctorId,
-  //   updateServiceById,
+  getRoomsByOwner,
+  updateRoom,
   //   deleteServiceById,
   //   disableServiceById,
   //   enableServiceById,
@@ -36,20 +36,15 @@ routes.get(
 
 routes.get("/get-room-by-id/:id", getRoomById);
 
-// routes.get(
-//   "/get-service-by-doctorId/:id",
-//   // userValidator.create,
-//   // authValidator.create,
-//   getServiceByDoctorId
-// );
+routes.get("/get-room-by-owner", isAuthorizedUser, getRoomsByOwner);
 
-// routes.put(
-//   "/update-service-by-id/:id",
-//   // userValidator.create,
-//   // authValidator.create,
-//   isAuthorizedAdmin,
-//   updateServiceById
-// );
+routes.put(
+  "/update-room-by-id/:id",
+  isAuthorizedUser,
+  fileUpload(),
+  roomValidator.update,
+  updateRoom
+);
 
 // routes.delete(
 //   "/delete-service-by-id/:id",
