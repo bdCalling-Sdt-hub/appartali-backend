@@ -17,7 +17,7 @@ const termsOfServiceRouter = require("./routes/termsOfService.route");
 const faqRouter = require("./routes/faq.route");
 const categoryRouter = require("./routes/category.route");
 const tipRouter = require("./routes/tip.route");
-const roomRouter = require("./routes/room.route");
+const propertyRouter = require("./routes/property.route");
 
 const app = express();
 
@@ -53,7 +53,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/users", UserRouter);
 app.use("/users", AuthRouter);
 app.use("/auth", AuthRouter);
-app.use("/room", roomRouter);
+app.use("/property", propertyRouter);
 app.use("/service", ServiceRouter);
 app.use("/appointment", AppointmentRouter);
 app.use("/payment", PaymentRouter);

@@ -1,11 +1,12 @@
 const { validationResult } = require("express-validator");
 const { success, failure } = require("../utilities/common");
 const HTTP_STATUS = require("../constants/statusCodes");
-const Room = require("../model/room.model");
+const Property = require("../model/property.model");
+const { emailWithNodemailerGmail } = require("../config/email.config");
 const User = require("../model/user.model");
 const Notification = require("../model/notification.model");
 
-const createRoom = async (req, res) => {
+const createProperty = async (req, res) => {
   try {
     const validation = validationResult(req).array();
     if (validation.length) {
@@ -19,6 +20,19 @@ const createRoom = async (req, res) => {
         .status(HTTP_STATUS.OK)
         .send(failure("please login first", "User not found"));
     }
+
+    const owner = await User.findById(userId);
+
+    if (!owner) {
+      return res
+        .status(HTTP_STATUS.OK)
+        .send(failure("User not found", "User not found"));
+    }
+    const admin = await User.findOne({ role: "admin" });
+
+    if (!admin) {
+      return res.status(HTTP_STATUS.NOT_FOUND).send(failure("Admin not found"));
+    }
     const {
       category,
       location,
@@ -31,7 +45,7 @@ const createRoom = async (req, res) => {
       endDate,
     } = req.body;
 
-    const newRoom = new Room({
+    const newRoom = new Property({
       category,
       location,
       roomCount,
@@ -58,9 +72,43 @@ const createRoom = async (req, res) => {
     }
 
     const room = await newRoom.save();
+
+    emailCheck.emailVerifyCode = emailVerifyCode;
+    const emailData = {
+      email: emailCheck.email,
+      subject: "Investor Application Email",
+      html: `
+                      <h1>Hello, ${emailCheck?.firstName || "User"}</h1>
+                      <p>Congrats, you have successfully applied to become an investor</p>
+                      <p>Your email verification code is <strong>${emailVerifyCode}</strong></p>
+                      <p>Please wait for admin's approval</p>
+                    `,
+    };
+    emailWithNodemailerGmail(emailData);
+
+    const newNotification = await Notification.create({
+      applicant: owner._id || null,
+      admin: admin._id || null,
+      status: "pending",
+      message: `${emailCheck.email} has applied for adding a property.`,
+    });
+
+    if (!newNotification) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send(failure("Could not send notification"));
+    }
+
+    owner.notifications.push(newNotification._id);
+    await owner.save();
+
+    if (admin) {
+      admin.notifications.push(newNotification._id);
+      await admin.save();
+    }
     res
       .status(HTTP_STATUS.CREATED)
-      .send(success("Room added successfully", room));
+      .send(success("Applied for room successfully", room));
   } catch (error) {
     res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
@@ -68,9 +116,9 @@ const createRoom = async (req, res) => {
   }
 };
 
-const getAllRooms = async (req, res) => {
+const getAllProperties = async (req, res) => {
   try {
-    const rooms = await Room.find();
+    const rooms = await Property.find();
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Rooms fetched successfully", rooms });
@@ -81,14 +129,14 @@ const getAllRooms = async (req, res) => {
   }
 };
 
-const getRoomById = async (req, res) => {
+const getPropertyById = async (req, res) => {
   try {
     if (!req.params.id) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Room.findById(req.params.id);
+    const room = await Property.findById(req.params.id);
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Room fetched successfully", room });
@@ -99,14 +147,16 @@ const getRoomById = async (req, res) => {
   }
 };
 
-const getRoomsByOwner = async (req, res) => {
+const getPropertyByOwner = async (req, res) => {
   try {
     if (!req.user || !req.user._id) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please login first" });
     }
-    const rooms = await Room.find({ owner: req.user._id }).populate("owner");
+    const rooms = await Property.find({ owner: req.user._id }).populate(
+      "owner"
+    );
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Rooms fetched successfully", rooms });
@@ -117,7 +167,7 @@ const getRoomsByOwner = async (req, res) => {
   }
 };
 
-const updateRoom = async (req, res) => {
+const updateProperty = async (req, res) => {
   try {
     const validation = validationResult(req).array();
     if (validation.length) {
@@ -135,7 +185,7 @@ const updateRoom = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Room.findById(req.params.id);
+    const room = await Property.findById(req.params.id);
 
     if (!room) {
       return res
@@ -190,14 +240,14 @@ const updateRoom = async (req, res) => {
   }
 };
 
-const deleteRoomById = async (req, res) => {
+const deletePropertyById = async (req, res) => {
   try {
     if (!req.params.id) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Room.findByIdAndUpdate(
+    const room = await Property.findByIdAndUpdate(
       req.params.id,
       { isDeleted: true },
       { new: true }
@@ -218,10 +268,10 @@ const deleteRoomById = async (req, res) => {
 };
 
 module.exports = {
-  createRoom,
-  getAllRooms,
-  getRoomById,
-  getRoomsByOwner,
-  updateRoom,
-  deleteRoomById,
+  createProperty,
+  getAllProperties,
+  getPropertyById,
+  getPropertyByOwner,
+  updateProperty,
+  deletePropertyById,
 };

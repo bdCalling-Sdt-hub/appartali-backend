@@ -1,17 +1,17 @@
 const express = require("express");
 const routes = express();
 const {
-  createRoom,
-  getAllRooms,
-  getRoomById,
-  getRoomsByOwner,
-  updateRoom,
-  deleteRoomById,
+  createProperty,
+  getAllProperties,
+  getPropertyById,
+  getPropertyByOwner,
+  updateProperty,
+  deletePropertyById,
   //   disableServiceById,
   //   enableServiceById,
   //   approveServiceById,
   //   cancelServiceById,
-} = require("../controller/room.controller");
+} = require("../controller/property.controller");
 const fileUpload = require("../middleware/fileUpload");
 const {
   isAuthorizedAdmin,
@@ -20,33 +20,37 @@ const {
 const { roomValidator } = require("../middleware/validation");
 
 routes.post(
-  "/add-room",
+  "/add-property",
   isAuthorizedUser,
   fileUpload(),
   roomValidator.create,
-  createRoom
+  createProperty
 );
 
 routes.get(
-  "/get-all-rooms",
+  "/get-all-properties",
   // userValidator.create,
   // authValidator.create,
-  getAllRooms
+  getAllProperties
 );
 
-routes.get("/get-room-by-id/:id", getRoomById);
+routes.get("/get-property-by-id/:id", getPropertyById);
 
-routes.get("/get-room-by-owner", isAuthorizedUser, getRoomsByOwner);
+routes.get("/get-property-by-owner", isAuthorizedUser, getPropertyByOwner);
 
 routes.put(
-  "/update-room-by-id/:id",
+  "/update-property-by-id/:id",
   isAuthorizedUser,
   fileUpload(),
   roomValidator.update,
-  updateRoom
+  updateProperty
 );
 
-routes.delete("/delete-room-by-id/:id", isAuthorizedUser, deleteRoomById);
+routes.delete(
+  "/delete-property-by-id/:id",
+  isAuthorizedUser,
+  deletePropertyById
+);
 
 // routes.patch(
 //   "/disable-service-by-id/:id",

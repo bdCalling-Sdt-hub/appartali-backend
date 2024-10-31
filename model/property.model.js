@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const roomSchema = new Schema(
+const propertySchema = new Schema(
   {
     category: {
       type: String,
@@ -86,4 +86,4 @@ const roomSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Room", roomSchema);
+module.exports = mongoose.model("Property", propertySchema);
