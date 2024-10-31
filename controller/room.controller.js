@@ -86,4 +86,22 @@ const getAllRooms = async (req, res) => {
   }
 };
 
-module.exports = { createRoom, getAllRooms };
+const getRoomById = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please provide room id" });
+    }
+    const room = await Room.findById(req.params.id);
+    res
+      .status(HTTP_STATUS.OK)
+      .send({ success: true, message: "Room fetched successfully", room });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
+module.exports = { createRoom, getAllRooms, getRoomById };

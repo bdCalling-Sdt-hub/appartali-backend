@@ -3,7 +3,7 @@ const routes = express();
 const {
   createRoom,
   getAllRooms,
-  //   getServiceById,
+  getRoomById,
   //   getServiceByDoctorId,
   //   updateServiceById,
   //   deleteServiceById,
@@ -31,12 +31,7 @@ routes.get(
   getAllRooms
 );
 
-// routes.get(
-//   "/get-service-by-id/:id",
-//   // userValidator.create,
-//   // authValidator.create,
-//   getServiceById
-// );
+routes.get("/get-room-by-id/:id", getRoomById);
 
 // routes.get(
 //   "/get-service-by-doctorId/:id",
