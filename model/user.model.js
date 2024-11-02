@@ -23,10 +23,21 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, "Please provide a password"],
       minlength: 5,
       select: false,
+      validate: {
+        validator: function () {
+          return this.loginType === "email" ? !!this.password : true;
+        },
+        message: "Please provide a password",
+      },
     },
+    // password: {
+    //   type: String,
+    //   required: [true, "Please provide a password"],
+    //   minlength: 5,
+    //   select: false,
+    // },
     loginType: {
       type: String,
       enum: ["email", "social"],
@@ -54,7 +65,7 @@ const userSchema = new mongoose.Schema(
       type: Date,
     },
 
-    // services: [{ type: mongoose.Schema.Types.ObjectId, ref: "Service" }],
+    properties: [{ type: mongoose.Schema.Types.ObjectId, ref: "Property" }],
     notifications: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Notification" },
     ],
@@ -89,14 +100,14 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-userSchema.pre("save", (next) => {
-  if (this.loginType === "social") {
-    this.password.required = false;
-  } else {
-    this.password.required = true;
-  }
-  next();
-});
+// userSchema.pre("save", (next) => {
+//   if (this.loginType === "social") {
+//     this.password.required = false;
+//   } else {
+//     this.password.required = true;
+//   }
+//   next();
+// });
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
