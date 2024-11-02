@@ -9,8 +9,8 @@ const {
   deletePropertyById,
   //   disableServiceById,
   //   enableServiceById,
-  //   approveServiceById,
-  //   cancelServiceById,
+  approvePropertyById,
+  cancelPropertyById,
 } = require("../controller/property.controller");
 const fileUpload = require("../middleware/fileUpload");
 const {
@@ -68,19 +68,16 @@ routes.delete(
 //   enableServiceById
 // );
 
-// routes.patch(
-//   "/approve-service-by-id/:id",
-//   // userValidator.create,
-//   // authValidator.create,
-//   isAuthorizedAdmin,
-//   approveServiceById
-// );
+routes.patch(
+  "/approve-property-by-id/:id",
+  isAuthorizedAdmin,
+  approvePropertyById
+);
 
-// routes.patch(
-//   "/cancel-service-by-id/:id",
-//   // userValidator.create,
-//   // authValidator.create,
-//   cancelServiceById
-// );
+routes.patch(
+  "/cancel-property-by-id/:id",
+  isAuthorizedAdmin,
+  cancelPropertyById
+);
 
 module.exports = routes;

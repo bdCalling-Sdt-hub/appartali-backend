@@ -12,7 +12,7 @@ const createProperty = async (req, res) => {
     if (validation.length) {
       return res
         .status(HTTP_STATUS.OK)
-        .send(failure("Failed to add room", validation[0].msg));
+        .send(failure("Failed to add property", validation[0].msg));
     }
     const userId = req.user._id;
     if (!userId) {
@@ -61,7 +61,7 @@ const createProperty = async (req, res) => {
     if (!newRoom) {
       return res
         .status(HTTP_STATUS.OK)
-        .send(failure("Failed to add room", "error in adding room"));
+        .send(failure("Failed to add property", "error in adding property"));
     }
 
     if (req.files && req.files["productImage"]) {
@@ -72,17 +72,20 @@ const createProperty = async (req, res) => {
     }
 
     const room = await newRoom.save();
-
-    emailCheck.emailVerifyCode = emailVerifyCode;
     const emailData = {
-      email: emailCheck.email,
-      subject: "Investor Application Email",
+      email: owner.email,
+      subject: "Property Application Email",
       html: `
-                      <h1>Hello, ${emailCheck?.firstName || "User"}</h1>
-                      <p>Congrats, you have successfully applied to become an investor</p>
-                      <p>Your email verification code is <strong>${emailVerifyCode}</strong></p>
-                      <p>Please wait for admin's approval</p>
-                    `,
+            <html>
+              <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+                <h2>Hello, ${owner?.firstName || "User"}</h2>
+                <p>Your application to add a property as a service has been successfully received.</p>
+                <p>We are currently reviewing your request. You will be notified once a decision has been made.</p>
+                <p>We appreciate your interest in collaborating with us.</p>
+                <p>Best regards,<br/> <strong>Team Appartali </strong></p>
+              </body>
+            </html>
+            `,
     };
     emailWithNodemailerGmail(emailData);
 
@@ -90,7 +93,7 @@ const createProperty = async (req, res) => {
       applicant: owner._id || null,
       admin: admin._id || null,
       status: "pending",
-      message: `${emailCheck.email} has applied for adding a property.`,
+      message: `${owner.email} has applied for adding a property.`,
     });
 
     if (!newNotification) {
@@ -108,7 +111,7 @@ const createProperty = async (req, res) => {
     }
     res
       .status(HTTP_STATUS.CREATED)
-      .send(success("Applied for room successfully", room));
+      .send(success("Applied for property successfully", room));
   } catch (error) {
     res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
@@ -267,8 +270,64 @@ const deletePropertyById = async (req, res) => {
   }
 };
 
+const approvePropertyById = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send({ success: false, message: "Please provide room id" });
+    }
+    const room = await Property.findByIdAndUpdate(
+      req.params.id,
+      { status: "approved" },
+      { new: true }
+    );
+    if (!room) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send({ success: false, message: "Room not found" });
+    }
+    res
+      .status(HTTP_STATUS.ACCEPTED)
+      .send({ success: true, message: "Room approved successfully", room });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
+const cancelPropertyById = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please provide room id" });
+    }
+    const room = await Property.findByIdAndUpdate(
+      req.params.id,
+      { status: "cancelled" },
+      { new: true }
+    );
+    if (!room) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send({ success: false, message: "Room not found" });
+    }
+    res
+      .status(HTTP_STATUS.OK)
+      .send({ success: true, message: "Room cancelled successfully", room });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
 module.exports = {
   createProperty,
+  approvePropertyById,
+  cancelPropertyById,
   getAllProperties,
   getPropertyById,
   getPropertyByOwner,
