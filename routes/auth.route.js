@@ -37,20 +37,10 @@ routes.post(
 );
 
 // for approving owner
-routes.post(
-  "/auth/approve-owner",
-
-  isAuthorizedAdmin,
-  approveOwner
-);
+routes.post("/auth/approve-owner", isAuthorizedAdmin, approveOwner);
 
 // for canceling owner
-routes.post(
-  "/auth/cancel-owner",
-
-  isAuthorizedAdmin,
-  cancelOwner
-);
+routes.post("/auth/cancel-owner", isAuthorizedAdmin, cancelOwner);
 
 routes.post("/auth/login", authValidator.login, login);
 

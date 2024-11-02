@@ -313,6 +313,17 @@ const approveOwner = async (req, res) => {
         .send(failure("User does not exist"));
     }
 
+    const existingOwner = await User.findOne({
+      email: owner.email,
+      role: "owner",
+    });
+
+    if (existingOwner) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send(failure("User is already an owner"));
+    }
+
     owner.ownerApplicationStatus = "approved";
     owner.isOwner = true;
     owner.role.push("owner");
@@ -363,10 +374,14 @@ const approveOwner = async (req, res) => {
         .send(failure("Could not send notification"));
     }
 
-    owner.notifications.push(newNotification._id);
+    if (!owner.notifications.includes(newNotification._id)) {
+      owner.notifications.push(newNotification._id);
+    }
     await owner.save();
 
-    admin.notifications.push(newNotification._id);
+    if (!admin.notifications.includes(newNotification._id)) {
+      admin.notifications.push(newNotification._id);
+    }
     await admin.save();
 
     return res
