@@ -567,20 +567,36 @@ const loginAsOwner = async (req, res) => {
 
 const loginSocial = async (req, res) => {
   try {
-    const validation = validationResult(req).array();
-    if (validation.length > 0) {
-      return res
-        .status(HTTP_STATUS.OK)
-        .send(failure("Failed to login", validation[0].msg));
+    // const validation = validationResult(req).array();
+    // if (validation.length > 0) {
+    //   return res
+    //     .status(HTTP_STATUS.OK)
+    //     .send(failure("Failed to login", validation[0].msg));
+    // }
+    const { email, firstName, lastName, image, phone } = req.body;
+
+    // fetching the fields
+    let user = await User.findOne({ email }).select("+password");
+
+    // when the user doesnt exist
+    if (!user) {
+      user = await User.create({
+        email,
+        firstName,
+        lastName,
+        image,
+        phone,
+        loginType: "social",
+      });
     }
-    const { email, password } = req.body;
-    const token = jwt.sign(req.user.toObject(), process.env.JWT_SECRET, {
+
+    const token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
     res.setHeader("Authorization", token);
     return res
       .status(HTTP_STATUS.OK)
-      .send(success("Logged in successfully", req.user));
+      .send(success("Logged in successfully", user));
   } catch (err) {
     return res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
@@ -743,6 +759,7 @@ module.exports = {
   approveOwner,
   cancelOwner,
   login,
+  loginSocial,
   loginAsOwner,
   logout,
   verifyEmail,

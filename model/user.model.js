@@ -20,13 +20,17 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: false,
     },
     password: {
       type: String,
       required: [true, "Please provide a password"],
       minlength: 5,
       select: false,
+    },
+    loginType: {
+      type: String,
+      enum: ["email", "social"],
+      default: "email",
     },
     role: {
       type: [String],
@@ -48,7 +52,6 @@ const userSchema = new mongoose.Schema(
 
     dateOfBirth: {
       type: Date,
-      // required: true
     },
 
     // services: [{ type: mongoose.Schema.Types.ObjectId, ref: "Service" }],
@@ -57,13 +60,13 @@ const userSchema = new mongoose.Schema(
     ],
     isOwner: {
       type: Boolean,
-      required: false,
+
       default: false,
     },
 
     emailVerified: {
       type: Boolean,
-      required: false,
+
       default: false,
     },
 
@@ -85,6 +88,15 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", (next) => {
+  if (this.loginType === "social") {
+    this.password.required = false;
+  } else {
+    this.password.required = true;
+  }
+  next();
+});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

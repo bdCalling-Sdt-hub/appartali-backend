@@ -4,6 +4,7 @@ const {
   signup,
   verifyEmail,
   login,
+  loginSocial,
   logout,
   signupAsOwner,
   approveOwner,
@@ -52,7 +53,7 @@ routes.post(
   changePassword
 );
 
-// for approving doctor
+// for approving owner
 routes.post(
   "/auth/approve-owner",
   // userValidator.create,
@@ -61,7 +62,7 @@ routes.post(
   approveOwner
 );
 
-// for canceling doctor
+// for canceling owner
 routes.post(
   "/auth/cancel-owner",
   // userValidator.create,
@@ -70,13 +71,12 @@ routes.post(
   cancelOwner
 );
 
-// for logging in
 routes.post("/auth/login", authValidator.login, login);
 
-// for logging in
+routes.post("/auth/login-social", loginSocial);
+
 routes.post("/auth/login-as-owner", authValidator.login, loginAsOwner);
 
-// for logging in
 routes.post("/auth/logout", logout);
 
 module.exports = routes;
