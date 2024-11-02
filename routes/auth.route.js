@@ -14,37 +14,20 @@ const {
   resetPassword,
   changePassword,
 } = require("../controller/auth.controller");
-const { userValidator, authValidator } = require("../middleware/validation");
-const {
-  isAuthorizedUser,
-  isAuthorizedAdmin,
-} = require("../middleware/authValidationJWT");
+const { authValidator } = require("../middleware/validation");
+const { isAuthorizedAdmin } = require("../middleware/authValidationJWT");
 
 // for signing up
 routes.post("/auth/signup", authValidator.create, signup);
 
-// for signing up as doctor
+// for signing up as owner
 routes.post("/auth/signup-as-owner", authValidator.create, signupAsOwner);
 
-routes.post(
-  "/auth/verify-email",
+routes.post("/auth/verify-email", verifyEmail);
 
-  verifyEmail
-);
+routes.post("/auth/forgot-password", forgotPassword);
 
-routes.post(
-  "/auth/forgot-password",
-  // userValidator.create,
-  // authValidator.create,
-  forgotPassword
-);
-
-routes.post(
-  "/auth/reset-password",
-  // userValidator.create,
-  // authValidator.create,
-  resetPassword
-);
+routes.post("/auth/reset-password", resetPassword);
 
 routes.post(
   "/auth/change-password",
@@ -56,8 +39,7 @@ routes.post(
 // for approving owner
 routes.post(
   "/auth/approve-owner",
-  // userValidator.create,
-  // authValidator.create,
+
   isAuthorizedAdmin,
   approveOwner
 );
@@ -65,8 +47,7 @@ routes.post(
 // for canceling owner
 routes.post(
   "/auth/cancel-owner",
-  // userValidator.create,
-  // authValidator.create,
+
   isAuthorizedAdmin,
   cancelOwner
 );
