@@ -24,9 +24,7 @@ const createProperty = async (req, res) => {
     const owner = await User.findById(userId);
 
     if (!owner) {
-      return res
-        .status(HTTP_STATUS.OK)
-        .send(failure("User not found", "User not found"));
+      return res.status(HTTP_STATUS.OK).send(failure("User not found"));
     }
     const admin = await User.findOne({ role: "admin" });
 
@@ -45,7 +43,7 @@ const createProperty = async (req, res) => {
       endDate,
     } = req.body;
 
-    const newRoom = new Property({
+    const newProperty = new Property({
       category,
       location,
       roomCount,
@@ -58,7 +56,7 @@ const createProperty = async (req, res) => {
       images: image && image.length ? image : [],
     });
 
-    if (!newRoom) {
+    if (!newProperty) {
       return res
         .status(HTTP_STATUS.OK)
         .send(failure("Failed to add property", "error in adding property"));
@@ -68,10 +66,10 @@ const createProperty = async (req, res) => {
       const imageFileNames = req.files.productImage.map(
         (file) => `/uploads/${file.filename}`
       );
-      newRoom.images = [...newRoom.images, ...imageFileNames];
+      newProperty.images = [...newProperty.images, ...imageFileNames];
     }
 
-    const room = await newRoom.save();
+    const property = await newProperty.save();
     const emailData = {
       email: owner.email,
       subject: "Property Application Email",
@@ -103,6 +101,7 @@ const createProperty = async (req, res) => {
     }
 
     owner.notifications.push(newNotification._id);
+    owner.properties.push(property._id);
     await owner.save();
 
     if (admin) {
@@ -111,7 +110,7 @@ const createProperty = async (req, res) => {
     }
     res
       .status(HTTP_STATUS.CREATED)
-      .send(success("Applied for property successfully", room));
+      .send(success("Applied for property successfully", property));
   } catch (error) {
     res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
