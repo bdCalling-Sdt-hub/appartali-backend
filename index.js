@@ -18,6 +18,7 @@ const faqRouter = require("./routes/faq.route");
 const categoryRouter = require("./routes/category.route");
 const tipRouter = require("./routes/tip.route");
 const propertyRouter = require("./routes/property.route");
+const reservationRouter = require("./routes/reservation.route");
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use("/users", UserRouter);
 app.use("/users", AuthRouter);
 app.use("/auth", AuthRouter);
 app.use("/property", propertyRouter);
+app.use("/reservation", reservationRouter);
 app.use("/service", ServiceRouter);
 app.use("/appointment", AppointmentRouter);
 app.use("/payment", PaymentRouter);

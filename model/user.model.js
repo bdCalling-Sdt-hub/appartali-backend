@@ -68,6 +68,9 @@ const userSchema = new mongoose.Schema(
     },
 
     properties: [{ type: mongoose.Schema.Types.ObjectId, ref: "Property" }],
+    reservations: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
+    ],
     notifications: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Notification" },
     ],

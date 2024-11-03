@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const bookingSchema = new mongoose.Schema(
+const reservationSchema = new mongoose.Schema(
   {
     property: {
       type: mongoose.Schema.Types.ObjectId,
@@ -38,4 +38,4 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Booking", bookingSchema);
+module.exports = mongoose.model("Reservation", reservationSchema);
