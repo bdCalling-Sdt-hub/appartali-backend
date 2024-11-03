@@ -200,7 +200,7 @@ const updateUserById = async (req, res) => {
 
 const updateProfileByUser = async (req, res) => {
   try {
-    const { name, phone, image } = req.body;
+    const { firstName, lastName, phone, address, image } = req.body;
     const user = await UserModel.findById(req.user._id);
     if (!user) {
       return res
@@ -217,8 +217,10 @@ const updateProfileByUser = async (req, res) => {
         user.image = imageFileName;
       }
     }
-    user.name = name || user.name;
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
     user.phone = phone || user.phone;
+    user.address = address || user.address;
     await user.save();
     return res
       .status(HTTP_STATUS.ACCEPTED)
