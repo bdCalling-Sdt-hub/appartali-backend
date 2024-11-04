@@ -62,8 +62,6 @@ const addReviewToProperty = async (req, res) => {
 
     property.reviews.push(newReview._id);
 
-    console.log(property.totalRatings, property.averageRating);
-
     property.totalRatings += 1;
     property.averageRating =
       (property.averageRating * (property.totalRatings - 1) + rating) /
@@ -74,50 +72,6 @@ const addReviewToProperty = async (req, res) => {
     return res
       .status(HTTP_STATUS.CREATED)
       .send(success("Review added successfully", newReview));
-  } catch (error) {
-    console.log(error);
-    return res
-      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
-      .send(failure("Internal server error"));
-  }
-};
-
-const addReviewToWebsite = async (req, res) => {
-  try {
-    const { review, rating, userId } = req.body;
-
-    if (!review || !rating || !userId) {
-      return res
-        .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("All fields are required"));
-    }
-
-    const reviewExists = await Review.findOne({ userId });
-
-    if (reviewExists) {
-      return res
-        .status(HTTP_STATUS.NOT_FOUND)
-        .send(failure("Same user cannot review twice"));
-    }
-
-    const user = await User.findById({ _id: userId });
-
-    if (!user) {
-      return res
-        .status(HTTP_STATUS.NOT_FOUND)
-        .send(failure("User with ID was not found"));
-    }
-
-    const newReview = await Review.create({
-      userId,
-      review,
-      rating,
-    });
-    if (newReview) {
-      return res
-        .status(HTTP_STATUS.CREATED)
-        .send(success("Added review successfully", newReview));
-    }
   } catch (error) {
     console.log(error);
     return res
@@ -165,7 +119,10 @@ const getReviewByReviewId = async (req, res) => {
 
 const getReviewByUserId = async (req, res) => {
   try {
-    const { userId } = req.body;
+    if (!req.user || !req.user._id) {
+      return res.status(HTTP_STATUS.OK).send(failure("please login first"));
+    }
+    const userId = req.user._id;
 
     if (!userId) {
       return res
@@ -173,7 +130,7 @@ const getReviewByUserId = async (req, res) => {
         .send(failure("All fields are required"));
     }
 
-    const review = await Review.findOne({ userId });
+    const review = await Review.findOne({ user: userId });
     if (!review) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -190,18 +147,22 @@ const getReviewByUserId = async (req, res) => {
 
 const editReview = async (req, res) => {
   try {
-    const { review, rating, userId } = req.body;
+    if (!req.user || !req.user._id) {
+      return res.status(HTTP_STATUS.OK).send(failure("please login first"));
+    }
+    const userId = req.user._id;
+    const { review, rating } = req.body;
     const { reviewId } = req.params;
 
-    if (!reviewId || !userId) {
+    if (!reviewId) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
-        .send(failure("reviewId and userId are required"));
+        .send(failure("reviewId is required"));
     }
 
     const reviewExists = await Review.findOne({
       _id: reviewId,
-      userId: userId,
+      user: userId,
     });
 
     if (!reviewExists) {
@@ -226,13 +187,21 @@ const editReview = async (req, res) => {
 
 const deleteReview = async (req, res) => {
   try {
+    console.log(req.user);
+    if (!req.user || !req.user._id) {
+      return res.status(HTTP_STATUS.OK).send(failure("please login first"));
+    }
+    const userId = req.user._id;
     const { reviewId } = req.params;
     if (!reviewId) {
       return res
         .status(HTTP_STATUS.BAD_REQUEST)
         .send(failure("reviewId is required"));
     }
-    const deletedReview = await Review.findByIdAndDelete({ _id: reviewId });
+    const deletedReview = await Review.findByIdAndDelete({
+      _id: reviewId,
+      user: userId,
+    });
     if (!deletedReview) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -251,7 +220,6 @@ const deleteReview = async (req, res) => {
 
 module.exports = {
   addReviewToProperty,
-  addReviewToWebsite,
   getAllWebsiteReviews,
   getReviewByUserId,
   getReviewByReviewId,

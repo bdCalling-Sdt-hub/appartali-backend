@@ -14,7 +14,7 @@ const { isAuthorizedUser } = require("../middleware/authValidationJWT");
 // const reviewValidator = require("../middleware/reviewValidation")
 
 routes.get("/all-reviews", getAllWebsiteReviews);
-routes.get("/review-by-user", getReviewByUserId);
+routes.get("/review-by-user", isAuthorizedUser, getReviewByUserId);
 routes.get("/get-one-review/:reviewId", getReviewByReviewId);
 
 routes.post(
@@ -27,14 +27,14 @@ routes.post(
 
 routes.delete(
   "/delete-review/:reviewId",
-  //   isAuthorizedUser,
+  isAuthorizedUser,
   //   userValidator.delete,
   deleteReview
 );
 
 routes.put(
   "/update-review/:reviewId",
-  //   isAuthorizedUser,
+  isAuthorizedUser,
   //   reviewValidator.updateReview,
   editReview
 );
