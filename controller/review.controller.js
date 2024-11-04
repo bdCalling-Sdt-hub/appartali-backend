@@ -4,7 +4,6 @@ const { failure, success } = require("../utilities/common");
 const HTTP_STATUS = require("../constants/statusCodes");
 const Review = require("../model/review.model");
 const Property = require("../model/property.model");
-const User = require("../model/user.model");
 const addReviewToProperty = async (req, res) => {
   try {
     // const validation = validationResult(req).array();
