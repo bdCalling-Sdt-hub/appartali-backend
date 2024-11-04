@@ -5,9 +5,11 @@ const homeContentModel = require("../model/homeContent.model");
 
 const getHomeContent = async (req, res) => {
   try {
-    const homeContent = await homeContent.findOne();
+    const homeContent = await homeContentModel.findOne();
 
-    return res.status(HTTP_STATUS.OK).send(success(homeContent));
+    return res
+      .status(HTTP_STATUS.OK)
+      .send(success("home content retrieved", homeContent));
   } catch (error) {
     console.log(error);
     return res
