@@ -9,7 +9,6 @@ const {
   getReviewByUserId,
   deleteReview,
 } = require("../controller/review.controller");
-// const { isAuthenticated, isAdmin } = require("../middleware/auth");
 const { isAuthorizedUser } = require("../middleware/authValidationJWT");
 // const reviewValidator = require("../middleware/reviewValidation")
 
@@ -19,7 +18,6 @@ routes.get("/get-one-review/:reviewId", getReviewByReviewId);
 
 routes.post(
   "/add-review",
-  //   isAuthorizedUser,
   //   reviewValidator.addReview,
   isAuthorizedUser,
   addReviewToProperty

@@ -45,7 +45,6 @@ const addReviewToProperty = async (req, res) => {
         .send(failure("Same user cannot review twice"));
     }
 
-    console.log("Creating new review...");
     const newReview = await Review.create({
       user: authId,
       property: propertyId,
