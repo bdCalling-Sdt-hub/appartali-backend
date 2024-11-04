@@ -16,7 +16,6 @@ const ReviewRouter = require("./routes/review.route");
 const termsOfServiceRouter = require("./routes/termsOfService.route");
 const faqRouter = require("./routes/faq.route");
 const categoryRouter = require("./routes/category.route");
-const tipRouter = require("./routes/tip.route");
 const propertyRouter = require("./routes/property.route");
 const reservationRouter = require("./routes/reservation.route");
 const contentRouter = require("./routes/content.route");
@@ -65,7 +64,6 @@ app.use("/chats", ChatRouter);
 app.use("/review", ReviewRouter);
 app.use("/terms-of-service", termsOfServiceRouter);
 app.use("/faq", faqRouter);
-app.use("/tip", tipRouter);
 app.use("/content", contentRouter);
 
 // Route to handle all other invalid requests
