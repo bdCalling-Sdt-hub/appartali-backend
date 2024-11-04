@@ -8,7 +8,6 @@ const databaseConnection = require("./config/database");
 const UserRouter = require("./routes/user.route");
 const AuthRouter = require("./routes/auth.route");
 const ServiceRouter = require("./routes/service.route");
-const AppointmentRouter = require("./routes/appointment.route");
 const ChatRouter = require("./routes/chat.route");
 
 const PaymentRouter = require("./routes/payment.route");
@@ -57,7 +56,7 @@ app.use("/auth", AuthRouter);
 app.use("/property", propertyRouter);
 app.use("/reservation", reservationRouter);
 app.use("/service", ServiceRouter);
-app.use("/appointment", AppointmentRouter);
+
 app.use("/payment", PaymentRouter);
 app.use("/category", categoryRouter);
 app.use("/chats", ChatRouter);
