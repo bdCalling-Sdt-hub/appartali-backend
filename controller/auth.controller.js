@@ -611,7 +611,7 @@ const loginSocial = async (req, res) => {
     res.setHeader("Authorization", token);
     return res
       .status(HTTP_STATUS.OK)
-      .send(success("Logged in successfully", user));
+      .send(success("Logged in successfully", { user, token }));
   } catch (err) {
     return res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)

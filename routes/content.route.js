@@ -1,6 +1,5 @@
 const express = require("express");
 const routes = express();
-const fileUpload = require("../middleware/fileUpload");
 
 const {
   updateHomeContent,
@@ -16,8 +15,5 @@ routes.put("/update-home-content", updateHomeContent);
 
 routes.get("/get-about-content", getAboutContent);
 routes.put("/update-about-content", updateAboutContent);
-
-routes.get("/get-blog", getBlog);
-routes.put("/update-blog", fileUpload(), updateBlog);
 
 module.exports = routes;
