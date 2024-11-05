@@ -120,10 +120,25 @@ const createProperty = async (req, res) => {
 
 const getAllProperties = async (req, res) => {
   try {
-    const rooms = await Property.find();
-    res
-      .status(HTTP_STATUS.OK)
-      .send({ success: true, message: "Rooms fetched successfully", rooms });
+    const { location, maxGuests, startDate, endDate } = req.query;
+
+    const query = {
+      location: new RegExp(location, "i"),
+    };
+    if (maxGuests) {
+      query.maxGuests = { $gte: parseInt(maxGuests) };
+    }
+    if (startDate && endDate) {
+      query.startDate = { $lte: new Date(endDate), $gte: new Date(startDate) };
+      query.endDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    }
+
+    const properties = await Property.find(query);
+    res.status(HTTP_STATUS.OK).send({
+      success: true,
+      message: "Rooms fetched successfully",
+      properties,
+    });
   } catch (error) {
     res
       .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
