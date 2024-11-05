@@ -16,6 +16,7 @@ const {
 } = require("../controller/auth.controller");
 const { authValidator } = require("../middleware/validation");
 const { isAuthorizedAdmin } = require("../middleware/authValidationJWT");
+const fileUpload = require("../middleware/fileUpload");
 
 // for signing up
 routes.post("/auth/signup", authValidator.create, signup);
@@ -44,7 +45,7 @@ routes.post("/auth/cancel-owner", isAuthorizedAdmin, cancelOwner);
 
 routes.post("/auth/login", authValidator.login, login);
 
-routes.post("/auth/login-social", loginSocial);
+routes.post("/auth/login-social", fileUpload(), loginSocial);
 
 routes.post("/auth/login-as-owner", authValidator.login, loginAsOwner);
 
