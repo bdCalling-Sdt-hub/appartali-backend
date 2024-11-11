@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema(
       required: [true, "please provide email"],
       unique: true,
     },
+    location: {
+      type: String,
+    },
     image: {
       type: String,
     },
@@ -53,6 +56,12 @@ const userSchema = new mongoose.Schema(
       enum: ["notApplied", "pending", "approved", "cancelled"],
       default: "notApplied",
     },
+    investorApplicationStatus: {
+      type: String,
+      enum: ["notApplied", "pending", "approved", "cancelled"],
+      default: "notApplied",
+    },
+    rooms: { type: Number, default: 0 },
     phone: {
       type: String,
     },
@@ -76,13 +85,15 @@ const userSchema = new mongoose.Schema(
     ],
     isOwner: {
       type: Boolean,
-
+      default: false,
+    },
+    isInvestor: {
+      type: Boolean,
       default: false,
     },
 
     emailVerified: {
       type: Boolean,
-
       default: false,
     },
 
