@@ -140,7 +140,7 @@ const getAllProperties = async (req, res) => {
       query.endDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
     }
 
-    const properties = await Property.find(query).populate("owner");
+    const properties = await Property.find(query).populate("owner reviews");
     res.status(HTTP_STATUS.OK).send({
       success: true,
       message: "Rooms fetched successfully",
