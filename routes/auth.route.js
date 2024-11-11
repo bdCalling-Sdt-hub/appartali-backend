@@ -7,6 +7,7 @@ const {
   loginSocial,
   logout,
   signupAsOwner,
+  becomeAnInvestor,
   approveOwner,
   cancelOwner,
   loginAsOwner,
@@ -23,6 +24,9 @@ routes.post("/auth/signup", authValidator.create, signup);
 
 // for signing up as owner
 routes.post("/auth/signup-as-owner", authValidator.create, signupAsOwner);
+
+// for becoming an investor
+routes.post("/auth/become-an-investor", becomeAnInvestor);
 
 routes.post("/auth/verify-email", verifyEmail);
 
