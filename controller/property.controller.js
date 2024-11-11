@@ -160,7 +160,9 @@ const getPropertyById = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Property.findById(req.params.id).populate("owner");
+    const room = await Property.findById(req.params.id).populate(
+      "owner reviews"
+    );
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Room fetched successfully", room });
