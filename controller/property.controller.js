@@ -72,6 +72,10 @@ const createProperty = async (req, res) => {
       newProperty.images = [...newProperty.images, ...imageFileNames];
     }
 
+    // Convert newProperty._id to a six-digit number string
+
+    newProperty.roomId = newProperty._id.toString().slice(-6).padStart(6, "0");
+
     const property = await newProperty.save();
     const emailData = {
       email: owner.email,
@@ -136,7 +140,7 @@ const getAllProperties = async (req, res) => {
       query.endDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
     }
 
-    const properties = await Property.find(query);
+    const properties = await Property.find(query).populate("owner");
     res.status(HTTP_STATUS.OK).send({
       success: true,
       message: "Rooms fetched successfully",
@@ -156,7 +160,7 @@ const getPropertyById = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Property.findById(req.params.id);
+    const room = await Property.findById(req.params.id).populate("owner");
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Room fetched successfully", room });

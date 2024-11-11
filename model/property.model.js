@@ -86,6 +86,9 @@ const propertySchema = new Schema(
       enum: ["pending", "approved", "cancelled"],
       default: "pending",
     },
+    roomId: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
