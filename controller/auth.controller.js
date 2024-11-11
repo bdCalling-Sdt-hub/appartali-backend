@@ -145,9 +145,9 @@ const signupAsOwner = async (req, res) => {
       emailCheck.emailVerifyCode = emailVerifyCode;
       const emailData = {
         email: emailCheck.email,
-        subject: "Investor Application Email",
+        subject: "Owner Application Email",
         html: `
-                        <h1>Hello, ${emailCheck?.firstName || "User"}</h1>
+                        <h6>Hello, ${emailCheck?.firstName || "User"}</h6>
                         <p>Congrats, you have successfully applied to become an investor</p>
                         <p>Your email verification code is <strong>${emailVerifyCode}</strong></p>
                         <p>Please wait for admin's approval</p>
@@ -280,6 +280,92 @@ const verifyEmail = async (req, res) => {
     return res
       .status(HTTP_STATUS.OK)
       .send(success("Email verified successfully"));
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send(`INTERNAL SERVER ERROR`);
+  }
+};
+
+const becomeAnInvestor = async (req, res) => {
+  try {
+    // const validation = validationResult(req).array();
+    // if (validation.length > 0) {
+    //   return res
+    //     .status(HTTP_STATUS.OK)
+    //     .send(failure("Failed to register", validation[0].msg));
+    // }
+    const { email, phone, location, rooms } = req.body;
+    const emailCheck = await User.findOne({ email });
+    if (!emailCheck) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send(failure("Please sign up first"));
+    }
+    if (emailCheck && emailCheck.investorApplicationStatus === "pending") {
+      return res
+        .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
+        .send(
+          failure(`${email} has already applied for the investor's position`)
+        );
+    }
+
+    if (
+      emailCheck &&
+      (emailCheck.isInvestor === true ||
+        emailCheck.investorApplicationStatus === "approved")
+    ) {
+      return res
+        .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
+        .send(failure(`${email} is already an investor`));
+    }
+
+    if (emailCheck) {
+      emailCheck.investorApplicationStatus = "pending";
+      emailCheck.location = location;
+      emailCheck.rooms = rooms;
+      emailCheck.phone = phone;
+
+      const emailVerifyCode = generateRandomCode(4); //4 digits
+
+      emailCheck.emailVerifyCode = emailVerifyCode;
+      const emailData = {
+        email: emailCheck.email,
+        subject: "Investor Application Email",
+        html: `
+                        <h1>Hello, ${emailCheck?.firstName || "User"}</h1>
+                        <p>Congrats, you have successfully applied to become an investor</p>
+                        <p>Your email verification code is <strong>${emailVerifyCode}</strong></p>
+                        <p>Please wait for admin's approval</p>
+                      `,
+      };
+      emailWithNodemailerGmail(emailData);
+
+      await emailCheck.save();
+
+      const newNotification = await Notification.create({
+        applicant: emailCheck._id,
+        admin: null,
+        status: "pending",
+        message: `${emailCheck.email} has applied for the investor's role.`,
+      });
+
+      if (!newNotification) {
+        return res
+          .status(HTTP_STATUS.BAD_REQUEST)
+          .send(failure("Could not send notification"));
+      }
+
+      emailCheck.notifications.push(newNotification._id);
+      await emailCheck.save();
+
+      return res.status(HTTP_STATUS.OK).send(
+        success("You have successfully applied for the investor's position", {
+          user: emailCheck,
+        })
+      );
+    }
   } catch (err) {
     console.log(err);
     return res
@@ -589,6 +675,7 @@ const loginSocial = async (req, res) => {
     //     .send(failure("Failed to login", validation[0].msg));
     // }
     const { email, firstName, lastName, image, phone } = req.body;
+    console.log("image", image);
 
     // fetching the fields
     let user = await User.findOne({ email }).select("+password");
@@ -771,6 +858,7 @@ const changePassword = async (req, res) => {
 module.exports = {
   signup,
   signupAsOwner,
+  becomeAnInvestor,
   approveOwner,
   cancelOwner,
   login,
