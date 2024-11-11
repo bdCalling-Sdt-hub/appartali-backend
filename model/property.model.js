@@ -77,6 +77,10 @@ const propertySchema = new Schema(
       type: Boolean,
       default: false,
     },
+    services: {
+      type: [String],
+      required: true,
+    },
     status: {
       type: String,
       enum: ["pending", "approved", "cancelled"],
