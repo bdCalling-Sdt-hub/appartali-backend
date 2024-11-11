@@ -140,7 +140,12 @@ const getAllProperties = async (req, res) => {
       query.endDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
     }
 
-    const properties = await Property.find(query).populate("owner reviews");
+    const properties = await Property.find(query)
+      .populate({
+        path: "reviews",
+        populate: { path: "user" },
+      })
+      .populate("owner");
     res.status(HTTP_STATUS.OK).send({
       success: true,
       message: "Rooms fetched successfully",
@@ -160,9 +165,10 @@ const getPropertyById = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Property.findById(req.params.id).populate(
-      "owner reviews"
-    );
+    const room = await Property.findById(req.params.id).populate([
+      { path: "owner", select: "firstName lastName email" },
+      { path: "reviews", populate: { path: "user" } },
+    ]);
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Room fetched successfully", room });
