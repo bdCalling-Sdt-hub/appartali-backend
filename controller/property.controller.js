@@ -8,6 +8,7 @@ const Notification = require("../model/notification.model");
 
 const createProperty = async (req, res) => {
   try {
+    console.log(req?.body);
     const validation = validationResult(req).array();
     if (validation.length) {
       return res
@@ -40,6 +41,7 @@ const createProperty = async (req, res) => {
       maxGuests,
       image,
       startDate,
+      services,
       endDate,
     } = req.body;
 
@@ -50,6 +52,7 @@ const createProperty = async (req, res) => {
       description,
       pricePerNight,
       maxGuests,
+      services: [services],
       startDate,
       endDate,
       owner: userId,
@@ -64,7 +67,7 @@ const createProperty = async (req, res) => {
 
     if (req.files && req.files["productImage"]) {
       const imageFileNames = req.files.productImage.map(
-        (file) => `/uploads/${file.filename}`
+        (file) => `public/uploads/images/${file.filename}`
       );
       newProperty.images = [...newProperty.images, ...imageFileNames];
     }
@@ -295,12 +298,44 @@ const approvePropertyById = async (req, res) => {
       req.params.id,
       { status: "approved" },
       { new: true }
-    );
+    ).populate("owner");
     if (!room) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
         .send({ success: false, message: "Room not found" });
     }
+    const emailData = {
+      email: room.owner.email,
+      subject: "Property Application Approved",
+      html: `
+            <html>
+              <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+                <h2 style="color: #4CAF50;">Congratulations, ${
+                  room.owner?.firstName || "User"
+                } 
+                </h2>
+                <p>We are delighted to inform you that your application for the property has been <strong>approved</strong>.</p>
+                
+                <p>You are now able to offer services directly to our users. We appreciate your decision to partner with us and look forward to your success on our platform.</p>
+                
+                <p>Here are the next steps to get started:</p>
+                <ul>
+                  <li>Log in to your account and complete your profile.</li>
+                  <li>Explore the property owner’s profile to manage your listings and services.</li>
+                  <li>Review our policies and guidelines to ensure a seamless experience.</li>
+                </ul>
+
+                <p>If you have any questions or need support, please don’t hesitate to reach out to us.</p>
+
+                <p>Sincerely,<br/>
+                <strong>Appartali</strong><br/>
+                <a href="mailto:support@appartali.com">support@appartali.com</a></p>
+              </body>
+            </html>
+                `,
+    };
+
+    emailWithNodemailerGmail(emailData);
     res
       .status(HTTP_STATUS.ACCEPTED)
       .send({ success: true, message: "Room approved successfully", room });
@@ -322,12 +357,33 @@ const cancelPropertyById = async (req, res) => {
       req.params.id,
       { status: "cancelled" },
       { new: true }
-    );
+    ).populate("owner");
     if (!room) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
         .send({ success: false, message: "Room not found" });
     }
+    const emailData = {
+      email: room.owner.email,
+      subject: "Property Application Cancelled",
+      html: `
+          <html>
+            <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+              <h2 style="color: #FF6F61;">Application Status Update</h2>
+              <p>Dear ${room.owner.firstName || "Applicant"},</p>
+              
+              <p>Thank you for your interest for adding a property in our platform. After careful consideration, we regret to inform you that your application was not approved at this time.</p>
+              
+              <p>If you have any questions about the decision or our platform, please feel free to reach out. </p>
+              
+              <p>Warm regards,<br/>
+              <strong>Appartali</strong><br/>
+              <a href="mailto:support@appartali.com">support@appartali.com</a></p>
+            </body>
+          </html>
+        `,
+    };
+    emailWithNodemailerGmail(emailData);
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Room cancelled successfully", room });
