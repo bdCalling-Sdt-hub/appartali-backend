@@ -55,6 +55,12 @@ const propertySchema = new Schema(
         ref: "Review",
       },
     ],
+    ratings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Rating",
+      },
+    ],
     bookings: [
       {
         type: Schema.Types.ObjectId,

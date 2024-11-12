@@ -11,6 +11,7 @@ const ChatRouter = require("./routes/chat.route");
 
 const PaymentRouter = require("./routes/payment.route");
 const ReviewRouter = require("./routes/review.route");
+const ratingRouter = require("./routes/rating.route");
 const termsOfServiceRouter = require("./routes/termsOfService.route");
 const faqRouter = require("./routes/faq.route");
 const categoryRouter = require("./routes/category.route");
@@ -60,6 +61,7 @@ app.use("/payment", PaymentRouter);
 app.use("/category", categoryRouter);
 app.use("/chats", ChatRouter);
 app.use("/review", ReviewRouter);
+app.use("/rating", ratingRouter);
 app.use("/terms-of-service", termsOfServiceRouter);
 app.use("/faq", faqRouter);
 app.use("/content", contentRouter);

@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const { validationResult } = require("express-validator");
 const { failure, success } = require("../utilities/common");
 const HTTP_STATUS = require("../constants/statusCodes");
@@ -100,7 +99,7 @@ const getReviewByReviewId = async (req, res) => {
   try {
     const { reviewId } = req.params;
 
-    const review = await Review.findOne({ _id: reviewId });
+    const review = await Review.findOne({ _id: reviewId }).populate("user");
     if (!review) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -119,7 +118,7 @@ const getReviewByPropertyId = async (req, res) => {
   try {
     const { propertyId } = req.params;
 
-    const review = await Review.find({ property: propertyId });
+    const review = await Review.find({ property: propertyId }).populate("user");
     if (!review) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -147,7 +146,7 @@ const getReviewByUserId = async (req, res) => {
         .send(failure("All fields are required"));
     }
 
-    const review = await Review.findOne({ user: userId });
+    const review = await Review.findOne({ user: userId }).populate("user");
     if (!review) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
