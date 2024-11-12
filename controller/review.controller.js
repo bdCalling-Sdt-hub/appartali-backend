@@ -115,6 +115,25 @@ const getReviewByReviewId = async (req, res) => {
   }
 };
 
+const getReviewByPropertyId = async (req, res) => {
+  try {
+    const { propertyId } = req.params;
+
+    const review = await Review.find({ property: propertyId });
+    if (!review) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send(failure("review could not be fetched"));
+    }
+    return res
+      .status(HTTP_STATUS.OK)
+      .send(success("review fetched successfully", review));
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send(`internal server error`);
+  }
+};
+
 const getReviewByUserId = async (req, res) => {
   try {
     if (!req.user || !req.user._id) {
@@ -220,6 +239,7 @@ module.exports = {
   addReviewToProperty,
   getAllWebsiteReviews,
   getReviewByUserId,
+  getReviewByPropertyId,
   getReviewByReviewId,
   editReview,
   deleteReview,
