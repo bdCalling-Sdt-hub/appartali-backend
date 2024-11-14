@@ -236,7 +236,8 @@ const updateProfileByUser = async (req, res) => {
 // Controller to get notifications by userId
 const getNotificationsByUserId = async (req, res) => {
   try {
-    const { userId } = req.body;
+    // const { userId } = req.body;
+    const { userId } = req.params;
 
     if (!userId) {
       return res
@@ -245,22 +246,20 @@ const getNotificationsByUserId = async (req, res) => {
     }
 
     // Fetch the user to check if they exist
-    const user = await UserModel.findById(userId).populate("notifications");
+    // const user = await UserModel.findById(userId).populate("notifications");
+    const notifications = await Notification.find({ applicant: userId });
 
-    if (!user) {
+    if (!notifications) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
-        .send(failure("User does not exist"));
+        .send(failure("no notifications found"));
     }
     // Return the user's notifications
     res.status(HTTP_STATUS.OK).send({
       message: "Notifications fetched successfully",
-      notifications: user.notifications,
+      // notifications: user.notifications,
+      notifications: notifications,
     });
-    // .json({
-    //   message: "Notifications fetched successfully",
-    //   notifications: user.notifications,
-    // });
   } catch (error) {
     console.error(error);
     res

@@ -45,6 +45,9 @@ const createProperty = async (req, res) => {
       endDate,
     } = req.body;
 
+    console.log("services", services);
+    console.log("services typeof", typeof services);
+
     const newProperty = new Property({
       category,
       location,
@@ -52,7 +55,7 @@ const createProperty = async (req, res) => {
       description,
       pricePerNight,
       maxGuests,
-      services: [services],
+      services,
       startDate,
       endDate,
       owner: userId,
@@ -241,6 +244,7 @@ const updateProperty = async (req, res) => {
       maxGuests,
       startDate,
       endDate,
+      services,
     } = req.body;
 
     room.category = category || room.category;
@@ -251,6 +255,7 @@ const updateProperty = async (req, res) => {
     room.maxGuests = maxGuests || room.maxGuests;
     room.startDate = startDate || room.startDate;
     room.endDate = endDate || room.endDate;
+    room.services = services || room.services;
 
     if (req.files && req.files["productImage"]) {
       const imageFileNames = req.files.productImage.map(

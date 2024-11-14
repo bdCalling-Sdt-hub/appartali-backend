@@ -39,12 +39,12 @@ const propertySchema = new Schema(
       type: Date,
       required: true,
     },
-    services: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Service",
-      },
-    ],
+    // services: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Service",
+    //   },
+    // ],
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -83,10 +83,12 @@ const propertySchema = new Schema(
       type: Boolean,
       default: false,
     },
-    services: {
-      type: [String],
-      required: true,
-    },
+    services: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     status: {
       type: String,
       enum: ["pending", "approved", "cancelled"],

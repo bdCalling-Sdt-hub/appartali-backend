@@ -28,7 +28,7 @@ routes.get("/guests", getAllGuests);
 routes.get("/owners", getAllOwners);
 
 // Route to get notifications by userId
-routes.get("/notifications-by-user", getNotificationsByUserId);
+routes.get("/notifications-by-user/:userId", getNotificationsByUserId);
 
 // Route to get notifications by userId
 routes.get("/all-notifications", getAllNotifications);

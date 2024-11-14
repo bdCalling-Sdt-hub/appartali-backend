@@ -36,8 +36,8 @@ const notificationSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["service", "appointment", "others"],
-      default: "others",
+      // enum: ["service", "appointment", "others"],
+      // default: "others",
     },
   },
   { timestamps: true }
