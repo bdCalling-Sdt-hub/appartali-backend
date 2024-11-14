@@ -97,7 +97,29 @@ const reserveProperty = async (req, res) => {
 
 const getAllReservations = async (req, res) => {
   try {
-    const reservations = await Reservation.find();
+    const { status } = req.query;
+    let query = {};
+    switch (status) {
+      case "upcoming":
+        query = { checkInDate: { $gte: new Date() } };
+        break;
+      case "checkin":
+        query = {
+          checkInDate: { $lte: new Date() },
+          checkOutDate: { $gte: new Date() },
+        };
+        break;
+      case "checkout":
+        query = { checkOutDate: { $lt: new Date() } };
+        break;
+      default:
+        break;
+    }
+
+    const reservations = await Reservation.find(query).populate(
+      "property user"
+    );
+
     res.status(HTTP_STATUS.OK).send({
       success: true,
       message: "reservations fetched successfully",
@@ -117,7 +139,9 @@ const getReservationById = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please provide room id" });
     }
-    const room = await Reservation.findById(req.params.id);
+    const room = await Reservation.findById(req.params.id).populate(
+      "property user"
+    );
     res
       .status(HTTP_STATUS.OK)
       .send({ success: true, message: "Room fetched successfully", room });
@@ -135,7 +159,9 @@ const getReservationByUser = async (req, res) => {
         .status(HTTP_STATUS.BAD_REQUEST)
         .send({ success: false, message: "Please login first" });
     }
-    const rooms = await Reservation.find({ user: req.user._id });
+    const rooms = await Reservation.find({ user: req.user._id }).populate(
+      "property user"
+    );
     if (!rooms.length) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -153,9 +179,49 @@ const getReservationByUser = async (req, res) => {
   }
 };
 
+const toggleStatus = async (req, res) => {
+  try {
+    if (!req.user || !req.user._id) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send({ success: false, message: "Please login first" });
+    }
+    const { reservationId, checkinCheckoutStatus } = req.body;
+    const reservation = await Reservation.findById({ _id: reservationId });
+    if (!reservation) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send({ success: false, message: "reservation not found" });
+    }
+
+    if (
+      checkinCheckoutStatus === "checkin" ||
+      checkinCheckoutStatus === "checkout"
+    ) {
+      reservation.checkinCheckoutStatus = checkinCheckoutStatus;
+      await reservation.save();
+      return res.status(HTTP_STATUS.OK).send({
+        success: true,
+        message: "reservation status updated successfully",
+        reservation,
+      });
+    }
+
+    return res.status(HTTP_STATUS.BAD_REQUEST).send({
+      success: false,
+      message: "Invalid status",
+    });
+  } catch (error) {
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .send({ success: false, error: error.message });
+  }
+};
+
 module.exports = {
   reserveProperty,
   getAllReservations,
   getReservationById,
   getReservationByUser,
+  toggleStatus,
 };

@@ -5,6 +5,7 @@ const {
   getAllReservations,
   getReservationById,
   getReservationByUser,
+  toggleStatus,
 } = require("../controller/reservation.controller");
 const fileUpload = require("../middleware/fileUpload");
 const {
@@ -20,15 +21,12 @@ routes.post(
   reserveProperty
 );
 
-routes.get(
-  "/get-all-reservations",
-  // userValidator.create,
-  // authValidator.create,
-  getAllReservations
-);
+routes.get("/get-all-reservations", getAllReservations);
 
 routes.get("/get-reservation-by-id/:id", getReservationById);
 
 routes.get("/get-reservation-by-user", isAuthorizedUser, getReservationByUser);
+
+routes.post("/toggle-status", isAuthorizedUser, toggleStatus);
 
 module.exports = routes;

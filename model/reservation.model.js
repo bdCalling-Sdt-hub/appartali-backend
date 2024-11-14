@@ -34,6 +34,11 @@ const reservationSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    checkinCheckoutStatus: {
+      type: String,
+      enum: ["upcoming", "checkin", "checkout"],
+      default: "upcoming",
+    },
   },
   { timestamps: true }
 );

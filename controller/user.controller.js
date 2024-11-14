@@ -126,7 +126,11 @@ const profile = async (req, res) => {
         .status(HTTP_STATUS.NOT_FOUND)
         .send(failure("User not logged in"));
     }
-    const user = await UserModel.findById(req.user._id).select("-password");
+    const user = await UserModel.findById(req.user._id)
+      .select("-password")
+      .populate("reservations")
+      .populate("properties");
+
     if (!user) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -247,7 +251,9 @@ const getNotificationsByUserId = async (req, res) => {
 
     // Fetch the user to check if they exist
     // const user = await UserModel.findById(userId).populate("notifications");
-    const notifications = await Notification.find({ applicant: userId });
+    const notifications = await Notification.find({
+      applicant: userId,
+    }).populate("applicant");
 
     if (!notifications) {
       return res
