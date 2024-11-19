@@ -223,8 +223,10 @@ const updateProfileByUser = async (req, res) => {
     }
     user.firstName = firstName || user.firstName;
     user.lastName = lastName || user.lastName;
+    user.fullName = `${user.firstName} ${user.lastName}`;
     user.phone = phone || user.phone;
     user.address = address || user.address;
+
     await user.save();
     return res
       .status(HTTP_STATUS.ACCEPTED)
