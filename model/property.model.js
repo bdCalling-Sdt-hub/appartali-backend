@@ -39,12 +39,7 @@ const propertySchema = new Schema(
       type: Date,
       required: true,
     },
-    // services: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Service",
-    //   },
-    // ],
+
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",

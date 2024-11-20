@@ -3,15 +3,9 @@ const { failure, success } = require("../utilities/common");
 const HTTP_STATUS = require("../constants/statusCodes");
 const Review = require("../model/review.model");
 const Property = require("../model/property.model");
+
 const addReviewToProperty = async (req, res) => {
   try {
-    // const validation = validationResult(req).array();
-    // // console.log(validation);
-    // if (validation.length > 0) {
-    //   return res
-    //     .status(HTTP_STATUS.OK)
-    //     .send(failure("Failed to add the review", validation[0].msg));
-    // }
     if (!req.user || !req.user._id) {
       return res.status(HTTP_STATUS.OK).send(failure("please login first"));
     }
@@ -25,7 +19,7 @@ const addReviewToProperty = async (req, res) => {
         .send(failure("Please provide all the required fields"));
     }
 
-    const property = await Property.findById(propertyId);
+    const property = await Property.findById(propertyId).populate("owner");
 
     if (!property) {
       return res
@@ -50,7 +44,6 @@ const addReviewToProperty = async (req, res) => {
       review: review,
       rating: rating,
     });
-    // Update property with new review
     if (!newReview) {
       return res
         .status(HTTP_STATUS.NOT_FOUND)
@@ -58,13 +51,18 @@ const addReviewToProperty = async (req, res) => {
     }
 
     property.reviews.push(newReview._id);
-
     property.totalRatings += 1;
     property.averageRating =
       (property.averageRating * (property.totalRatings - 1) + rating) /
       property.totalRatings;
-
     await property.save();
+
+    // Update user review and rating counts
+    if (property.owner) {
+      property.owner.reviewsCount += 1;
+      property.owner.ratingsCount += 1;
+      await property.owner.save();
+    }
 
     return res
       .status(HTTP_STATUS.CREATED)

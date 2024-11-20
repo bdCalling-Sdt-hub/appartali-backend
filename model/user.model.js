@@ -112,6 +112,9 @@ const userSchema = new mongoose.Schema(
     },
 
     reviews: { type: mongoose.Schema.Types.ObjectId, ref: "Review" },
+
+    reviewsCount: { type: Number, default: 0 },
+    ratingsCount: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
