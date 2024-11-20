@@ -8,6 +8,7 @@ const {
   getOneUserById,
   getNotificationsByUserId,
   getAllNotifications,
+  notificationRead,
   updateUserById,
   profile,
   updateProfileByUser,
@@ -27,12 +28,14 @@ routes.get("/guests", getAllGuests);
 
 routes.get("/owners", getAllOwners);
 
+routes.patch("/notification-read/:notificationId", notificationRead);
+
 routes.get("/notifications-by-user/:userId", getNotificationsByUserId);
 
 // Route to get notifications by userId
 routes.get("/all-notifications", getAllNotifications);
 
-// // get one user data
+// get one user data
 routes.get("/get-one-user/:id", getOneUserById);
 
 // updates user data

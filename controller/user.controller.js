@@ -300,6 +300,44 @@ const getAllNotifications = async (req, res) => {
   }
 };
 
+const notificationRead = async (req, res) => {
+  try {
+    const { notificationId } = req.params;
+
+    if (!notificationId) {
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .send(failure("Please provide notificationId"));
+    }
+
+    const notification = await Notification.findByIdAndUpdate(
+      notificationId,
+      {
+        $set: {
+          isRead: true,
+        },
+      },
+      { new: true }
+    );
+
+    if (!notification) {
+      return res
+        .status(HTTP_STATUS.NOT_FOUND)
+        .send(failure("Notification does not exist"));
+    }
+
+    res.status(HTTP_STATUS.OK).send({
+      message: "Notification read successfully",
+      notification: notification,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getAllOwners,
@@ -307,6 +345,7 @@ module.exports = {
   getOneUserById,
   getNotificationsByUserId,
   getAllNotifications,
+  notificationRead,
   updateUserById,
   profile,
   updateProfileByUser,
