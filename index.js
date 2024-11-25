@@ -19,6 +19,7 @@ const propertyRouter = require("./routes/property.route");
 const reservationRouter = require("./routes/reservation.route");
 const contentRouter = require("./routes/content.route");
 const blogRouter = require("./routes/blog.route");
+const helpRouter = require("./routes/help.route");
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use("/terms-of-service", termsOfServiceRouter);
 app.use("/faq", faqRouter);
 app.use("/content", contentRouter);
 app.use("/blog", blogRouter);
+app.use("/help", helpRouter);
 
 // Route to handle all other invalid requests
 app.use((req, res) => {
