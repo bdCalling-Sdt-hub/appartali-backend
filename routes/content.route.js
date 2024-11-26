@@ -6,8 +6,6 @@ const {
   getHomeContent,
   updateAboutContent,
   getAboutContent,
-  getBlog,
-  updateBlog,
 } = require("../controller/content.controller");
 
 routes.get("/get-home-content", getHomeContent);
