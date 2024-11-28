@@ -5,39 +5,43 @@ const propertySchema = new Schema(
   {
     category: {
       type: String,
-      required: true,
+      // required: true,
       ref: "Category",
+    },
+    name: {
+      type: String,
+      // required: true,
     },
     location: {
       type: String,
-      required: true,
+      // required: true,
     },
     roomCount: {
       type: Number,
-      required: true,
+      // required: true,
     },
     description: {
       type: String,
-      required: true,
+      // required: true,
     },
     images: {
       type: [String],
     },
     pricePerNight: {
       type: Number,
-      required: true,
+      // required: true,
     },
     maxGuests: {
       type: Number,
-      required: true,
+      // required: true,
     },
     startDate: {
       type: Date,
-      required: true,
+      // required: true,
     },
     endDate: {
       type: Date,
-      required: true,
+      // required: true,
     },
 
     owner: {
@@ -81,7 +85,7 @@ const propertySchema = new Schema(
     services: [
       {
         type: String,
-        required: true,
+        // required: true,
       },
     ],
     status: {
@@ -91,6 +95,10 @@ const propertySchema = new Schema(
     },
     roomId: {
       type: String,
+    },
+    satisfiedGuests: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true }

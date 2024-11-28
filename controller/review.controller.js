@@ -55,6 +55,10 @@ const addReviewToProperty = async (req, res) => {
     property.averageRating =
       (property.averageRating * (property.totalRatings - 1) + rating) /
       property.totalRatings;
+    if (rating == 5) {
+      property.satisfiedGuests += 1;
+    }
+
     await property.save();
 
     // Update user review and rating counts
