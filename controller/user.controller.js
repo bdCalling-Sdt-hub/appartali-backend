@@ -204,7 +204,7 @@ const updateUserById = async (req, res) => {
 
 const updateProfileByUser = async (req, res) => {
   try {
-    const { firstName, lastName, phone, address, image } = req.body;
+    const { firstName, lastName, phone, address, image, guestId } = req.body;
     const user = await UserModel.findById(req.user._id);
     if (!user) {
       return res
@@ -226,6 +226,7 @@ const updateProfileByUser = async (req, res) => {
     user.fullName = `${user.firstName} ${user.lastName}`;
     user.phone = phone || user.phone;
     user.address = address || user.address;
+    user.guestId = guestId || user.guestId;
 
     await user.save();
     return res
