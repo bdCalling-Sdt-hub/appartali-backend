@@ -1,0 +1,2699 @@
+{
+	"info": {
+		"_postman_id": "8b505ed0-2d08-4b4c-bda5-29add9068f42",
+		"name": "appartali",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39189767",
+		"_collection_link": "https://orange-flare-713295.postman.co/workspace/Team-Workspace~84151058-02b0-4c65-8433-c32c98ddefc0/collection/39189767-8b505ed0-2d08-4b4c-bda5-29add9068f42?action=share&source=collection_link&creator=39189767"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup as guest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "01999999999",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/signup",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup as owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "019999999",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/signup-as-owner",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"signup-as-owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "become an investor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "rooms",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/become-an-investor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"become-an-investor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login social",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "m@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "mehedi",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "hasan",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/mdmeh/OneDrive/Pictures/Image.png"
+								},
+								{
+									"key": "phone",
+									"value": "5156156455",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/login-social",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"login-social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "emailVerifyCode",
+									"value": "4388",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/verify-email",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/forgot-password",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/reset-password",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "nodenat960@paxnw.com",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "nodenat961",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "nodenat961",
+									"type": "text"
+								},
+								{
+									"key": "oldPassword",
+									"value": "nodenat960",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/auth/change-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve owner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ownerId",
+									"value": "672f1e8533486c962ccbd601",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/approve-owner",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"approve-owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel owner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzIwNmM5ZWIwYzRiYjM0MjJmYjFhMjkiLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoidXNlciIsImZ1bGxOYW1lIjoiYWRtaW4gdXNlciIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbWJiaFB6L2k2QTZOTW9yTHdKTTl0T1dUOTVjYU04b1pDcDlSb21Td1g1UmVuMk54bGdlVksiLCJyb2xlIjpbImFkbWluIl0sIm93bmVyQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicGhvbmUiOiIwMTk5OTk5OTk5OSIsIm5vdGlmaWNhdGlvbnMiOlsiNjcyMGE0NTliNzFiNzc2YzkwOTQxZjk3IiwiNjcyMGE5OWI2OTRiMzk0NjUyMTdlNjM0IiwiNjcyMGFhODU2OTRiMzk0NjUyMTdlNjNiIiwiNjcyMGFkYmJiY2U3OGMwMTA0MzhjM2JlIiwiNjcyMGFkY2JiY2U3OGMwMTA0MzhjM2M2IiwiNjcyMGFlMjRiY2U3OGMwMTA0MzhjM2NmIiwiNjcyMGFlMmFiY2U3OGMwMTA0MzhjM2Q3IiwiNjcyMGFlNGNjNTI4ZmVjM2FmMjUzZTdlIiwiNjcyMGFlNTFjNTI4ZmVjM2FmMjUzZTg2IiwiNjcyMGFlYWNlMTM0MTVlMzU2ZmE2YmQ3IiwiNjcyMGFlYWZlMTM0MTVlMzU2ZmE2YmRmIiwiNjcyMGFlZTNhM2YzZmI5MDdiNjIzYzA3IiwiNjcyMGFlZmNhM2YzZmI5MDdiNjIzYzBmIiwiNjcyNWY2NDZhZDcwODU1ZjliOGRkZjNiIiwiNjcyNWY2ZWY2OTk1YzU0YWJmYTUyM2ZjIiwiNjcyNjAwNThiODU0MGQ2ZjkyZWM0M2MzIiwiNjcyNzA1MDkyMTFhNmY0M2RhYWQ0ODFmIiwiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUyIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDk0IiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDljIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGE0IiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFjIiwiNjcyZWYzMWYzMzQ4NmM5NjJjY2JkNTNjIiwiNjcyZWYzZGUzMzQ4NmM5NjJjY2JkNTQ4IiwiNjcyZWY2NzAzMzQ4NmM5NjJjY2JkNTU3IiwiNjcyZjAwOTMzMzQ4NmM5NjJjY2JkNTdlIiwiNjcyZjAxNjEzMzQ4NmM5NjJjY2JkNThlIiwiNjcyZjAxZTczMzQ4NmM5NjJjY2JkNTllIiwiNjcyZjAyNTQzMzQ4NmM5NjJjY2JkNWFjIiwiNjcyZjAyYzkzMzQ4NmM5NjJjY2JkNWJhIiwiNjcyZjA1NjUzMzQ4NmM5NjJjY2JkNWRhIiwiNjcyZjA1OTAzMzQ4NmM5NjJjY2JkNWU0IiwiNjcyZjFmYmM4OTgzMDY0MjRiNjVlMTczIiwiNjcyZjI1MDIyN2M3NDcwZWE1OGQ1MzhiIiwiNjcyZjI2ODhkNGFiZTMyMjZiNDk3NjNjIiwiNjcyZjI3MGYxM2QzNmM0OGNlYjlmNzhkIiwiNjcyZjI3ZWUxM2QzNmM0OGNlYjlmNzk4Il0sImlzT3duZXIiOmZhbHNlLCJlbWFpbFZlcmlmaWVkIjpmYWxzZSwiZW1haWxWZXJpZnlDb2RlIjoiMTA0NiIsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMjlUMDU6MDM6MjYuNTAxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTEtMDlUMDk6MTQ6MjIuOTIxWiIsIl9fdiI6MzcsImxvZ2luVHlwZSI6ImVtYWlsIiwicHJvcGVydGllcyI6W10sInJlc2VydmF0aW9ucyI6W10sImludmVzdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwiaXNJbnZlc3RvciI6ZmFsc2UsInJvb21zIjowLCJpYXQiOjE3MzExNDM3MjAsImV4cCI6MTczMTIzMDEyMH0.6-mx7fvNnEbWJY0PQRudbUmZXGuS2jg2X_3MnE5HcD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ownerId",
+									"value": "672f1e8533486c962ccbd601",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/cancel-owner",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"cancel-owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as guest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "hehob21449@cironex.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin@email.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pihij60420@regishub.com",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth/login-as-owner",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth",
+								"login-as-owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAxMjdlZDdhZDNlZDJjNTNlNDg5YjEiLCJlbWFpbCI6ImRvY3RvckBlbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtSXZLYUovYkVrUEVGby5rLk90U2t1QnpNWUtaMUk4ck5HWHJMYWcyaVZHV2J4ZzUyNEtsNiIsInJvbGUiOiJwYXRpZW50IiwiZG9jdG9yQXBwbGljYXRpb25TdGF0dXMiOiJjYW5jZWxsZWQiLCJiYWxhbmNlIjowLCJuaHNOdW1iZXIiOiIxNzI4MTI5MDA1Njk2IiwiY29uc3VsdGF0aW9uSGlzdG9yeSI6W10sInVwY29taW5nSGlzdG9yeSI6W10sIm5vdGlmaWNhdGlvbnMiOlsiNjcwMTI3ZWQ3YWQzZWQyYzUzZTQ4OWIzIiwiNjcwMTI4MzU3YWQzZWQyYzUzZTQ4OWJjIiwiNjcwMTJiYjM3YWQzZWQyYzUzZTQ4OWMzIl0sImlzRG9jdG9yIjpmYWxzZSwiaXNWZXJpZmllZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMDVUMTE6NTA6MDUuNzAwWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTAtMDVUMTI6MDY6MTEuMzYyWiIsIl9fdiI6MywiaWF0IjoxNzI4MTMwMDMwLCJleHAiOjE3MjgyMTY0MzB9.NBF_ykGxONDB9ubZsCNwcHtS4iq7B1upSU5tQP0HF6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"abir@email.com\",\r\n    \"password\": \"123456\",\r\n    \"nhsNumber\": \"211\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get all users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzIwNmM5ZWIwYzRiYjM0MjJmYjFhMjkiLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoidXNlciIsImZ1bGxOYW1lIjoiYWRtaW4gdXNlciIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbWJiaFB6L2k2QTZOTW9yTHdKTTl0T1dUOTVjYU04b1pDcDlSb21Td1g1UmVuMk54bGdlVksiLCJyb2xlIjpbImFkbWluIl0sIm93bmVyQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicGhvbmUiOiIwMTk5OTk5OTk5OSIsIm5vdGlmaWNhdGlvbnMiOlsiNjcyMGE0NTliNzFiNzc2YzkwOTQxZjk3IiwiNjcyMGE5OWI2OTRiMzk0NjUyMTdlNjM0IiwiNjcyMGFhODU2OTRiMzk0NjUyMTdlNjNiIiwiNjcyMGFkYmJiY2U3OGMwMTA0MzhjM2JlIiwiNjcyMGFkY2JiY2U3OGMwMTA0MzhjM2M2IiwiNjcyMGFlMjRiY2U3OGMwMTA0MzhjM2NmIiwiNjcyMGFlMmFiY2U3OGMwMTA0MzhjM2Q3IiwiNjcyMGFlNGNjNTI4ZmVjM2FmMjUzZTdlIiwiNjcyMGFlNTFjNTI4ZmVjM2FmMjUzZTg2IiwiNjcyMGFlYWNlMTM0MTVlMzU2ZmE2YmQ3IiwiNjcyMGFlYWZlMTM0MTVlMzU2ZmE2YmRmIiwiNjcyMGFlZTNhM2YzZmI5MDdiNjIzYzA3IiwiNjcyMGFlZmNhM2YzZmI5MDdiNjIzYzBmIiwiNjcyNWY2NDZhZDcwODU1ZjliOGRkZjNiIiwiNjcyNWY2ZWY2OTk1YzU0YWJmYTUyM2ZjIiwiNjcyNjAwNThiODU0MGQ2ZjkyZWM0M2MzIiwiNjcyNzA1MDkyMTFhNmY0M2RhYWQ0ODFmIiwiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUyIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDk0IiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDljIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGE0IiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFjIl0sImlzT3duZXIiOmZhbHNlLCJlbWFpbFZlcmlmaWVkIjpmYWxzZSwiZW1haWxWZXJpZnlDb2RlIjoiMTA0NiIsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMjlUMDU6MDM6MjYuNTAxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTEtMDVUMDg6Mjg6MzYuNzUyWiIsIl9fdiI6MjIsImxvZ2luVHlwZSI6ImVtYWlsIiwicHJvcGVydGllcyI6W10sInJlc2VydmF0aW9ucyI6W10sImlhdCI6MTczMTEyMjI5OCwiZXhwIjoxNzMxMjA4Njk4fQ.GZ8dJhuQakuXLUJs6t4uN7w8CSTUYtZRWWWq8x-6ctw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all owners",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/owners",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"owners"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "nodenat",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all guests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/guests",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"guests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one user by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/get-one-user/671f4e6aac673b2df3521f75",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"get-one-user",
+								"671f4e6aac673b2df3521f75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "arafat",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0199999999",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ABIR/Pictures/Screenshots/Screenshot (10).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/get-one-user/67020d51bf92bbc342325f6f",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"get-one-user",
+								"67020d51bf92bbc342325f6f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get own profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzJmMWU4NTMzNDg2Yzk2MmNjYmQ2MDEiLCJmaXJzdE5hbWUiOiJoZWhvYjIxNDQ5QGNpcm9uZXguY29tIiwibGFzdE5hbWUiOiJoZWhvYjIxNDQ5QGNpcm9uZXguY29tIiwiZnVsbE5hbWUiOiJoZWhvYjIxNDQ5QGNpcm9uZXguY29tIGhlaG9iMjE0NDlAY2lyb25leC5jb20iLCJlbWFpbCI6ImhlaG9iMjE0NDlAY2lyb25leC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRwQVZoTHozNlVDR3lBSEFRTHU4aXJ1RlhhS3ZlbzBsZktuMDhOTzRaVWZjUXlMMmZwanc1NiIsImxvZ2luVHlwZSI6ImVtYWlsIiwicm9sZSI6WyJndWVzdCJdLCJvd25lckFwcGxpY2F0aW9uU3RhdHVzIjoibm90QXBwbGllZCIsImludmVzdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicm9vbXMiOjAsInBob25lIjoiMDE5OTk5OTk5OTkiLCJwcm9wZXJ0aWVzIjpbXSwicmVzZXJ2YXRpb25zIjpbXSwibm90aWZpY2F0aW9ucyI6W10sImlzT3duZXIiOmZhbHNlLCJpc0ludmVzdG9yIjpmYWxzZSwiZW1haWxWZXJpZmllZCI6ZmFsc2UsImVtYWlsVmVyaWZ5Q29kZSI6IjM5MTkiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNMb2NrZWQiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI0LTExLTA5VDA4OjM0OjEzLjAxMFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTExLTA5VDA4OjM0OjEzLjAxMFoiLCJfX3YiOjAsImlhdCI6MTczMTE0MTQ2NiwiZXhwIjoxNzMxMjI3ODY2fQ.u7sCnuiX6RiKYuhcAJ8uS853545LSv6O6kbRoeOESBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "arafat",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0199999999",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ABIR/Pictures/Screenshots/Screenshot (10).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update profile by user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzFmNGU2YWFjNjczYjJkZjM1MjFmNzUiLCJmaXJzdE5hbWUiOiJwaWhpajYwNDIwIiwibGFzdE5hbWUiOiJwaWhpajYwNDIwIiwiZnVsbE5hbWUiOiJwaWhpajYwNDIwIHBpaGlqNjA0MjAiLCJlbWFpbCI6InBpaGlqNjA0MjBAcmVnaXNodWIuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkMDVlemwzSEVzelNmNERQcnN2WnEudTBlb0wyejhZSnYwLkJqVFN0SjdTNkIuUHlJUjd5dlciLCJyb2xlIjpbImd1ZXN0Iiwib3duZXIiXSwib3duZXJBcHBsaWNhdGlvblN0YXR1cyI6ImFwcHJvdmVkIiwicGhvbmUiOiIwMTk5OTk5OTk5OSIsIm5vdGlmaWNhdGlvbnMiOlsiNjcyMGE0NTliNzFiNzc2YzkwOTQxZjk3IiwiNjcyMGE5OWI2OTRiMzk0NjUyMTdlNjM0IiwiNjcyMGFhODU2OTRiMzk0NjUyMTdlNjNiIiwiNjcyMGFkYmJiY2U3OGMwMTA0MzhjM2JlIiwiNjcyMGFkY2JiY2U3OGMwMTA0MzhjM2M2IiwiNjcyMGFlMjRiY2U3OGMwMTA0MzhjM2NmIiwiNjcyMGFlMmFiY2U3OGMwMTA0MzhjM2Q3IiwiNjcyMGFlNGNjNTI4ZmVjM2FmMjUzZTdlIiwiNjcyMGFlNTFjNTI4ZmVjM2FmMjUzZTg2IiwiNjcyMGFlYWNlMTM0MTVlMzU2ZmE2YmQ3IiwiNjcyMGFlYWZlMTM0MTVlMzU2ZmE2YmRmIiwiNjcyMGFlZTNhM2YzZmI5MDdiNjIzYzA3IiwiNjcyMGFlZmNhM2YzZmI5MDdiNjIzYzBmIiwiNjcyNWY2NDZhZDcwODU1ZjliOGRkZjNiIiwiNjcyNWY2ZWY2OTk1YzU0YWJmYTUyM2ZjIiwiNjcyNjAwNThiODU0MGQ2ZjkyZWM0M2MzIl0sImlzT3duZXIiOnRydWUsImVtYWlsVmVyaWZpZWQiOnRydWUsImVtYWlsVmVyaWZ5Q29kZSI6Ijk3NzMiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNMb2NrZWQiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI0LTEwLTI4VDA4OjQyOjE4Ljg4NFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTExLTAyVDEwOjM1OjA0LjQ4OFoiLCJfX3YiOjIwLCJsb2dpblR5cGUiOiJlbWFpbCIsInByb3BlcnRpZXMiOltdLCJpYXQiOjE3MzA2MDY3MzEsImV4cCI6MTczMDY5MzEzMX0.fZRtB4c5RTZI7akR70kwnqYPHlP5T5bqW5zHvQ9AB44",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "pihij",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "jihip",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "california",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0199999999",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/update-profile-by-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"update-profile-by-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "property",
+			"item": [
+				{
+					"name": "get all properties",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/get-all-properties?startDate=2024-10-10&endDate=2024-11-30",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"get-all-properties"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "kac",
+									"disabled": true
+								},
+								{
+									"key": "maxGuests",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2024-10-10"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-11-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one property by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/get-property-by-id/6725f7186995c54abfa52403",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"get-property-by-id",
+								"6725f7186995c54abfa52403"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get property by owner",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/get-property-by-owner",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"get-property-by-owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update property by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzFmNGU2YWFjNjczYjJkZjM1MjFmNzUiLCJmaXJzdE5hbWUiOiJwaWhpaiIsImxhc3ROYW1lIjoiamloaXAiLCJmdWxsTmFtZSI6InBpaGlqNjA0MjAgcGloaWo2MDQyMCIsImVtYWlsIjoicGloaWo2MDQyMEByZWdpc2h1Yi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwNWV6bDNIRXN6U2Y0RFByc3ZacS51MGVvTDJ6OFlKdjAuQmpUU3RKN1M2Qi5QeUlSN3l2VyIsInJvbGUiOlsiZ3Vlc3QiLCJvd25lciJdLCJvd25lckFwcGxpY2F0aW9uU3RhdHVzIjoiYXBwcm92ZWQiLCJwaG9uZSI6IjAxOTk5OTk5OTkiLCJub3RpZmljYXRpb25zIjpbIjY3MjBhNDU5YjcxYjc3NmM5MDk0MWY5NyIsIjY3MjBhOTliNjk0YjM5NDY1MjE3ZTYzNCIsIjY3MjBhYTg1Njk0YjM5NDY1MjE3ZTYzYiIsIjY3MjBhZGJiYmNlNzhjMDEwNDM4YzNiZSIsIjY3MjBhZGNiYmNlNzhjMDEwNDM4YzNjNiIsIjY3MjBhZTI0YmNlNzhjMDEwNDM4YzNjZiIsIjY3MjBhZTJhYmNlNzhjMDEwNDM4YzNkNyIsIjY3MjBhZTRjYzUyOGZlYzNhZjI1M2U3ZSIsIjY3MjBhZTUxYzUyOGZlYzNhZjI1M2U4NiIsIjY3MjBhZWFjZTEzNDE1ZTM1NmZhNmJkNyIsIjY3MjBhZWFmZTEzNDE1ZTM1NmZhNmJkZiIsIjY3MjBhZWUzYTNmM2ZiOTA3YjYyM2MwNyIsIjY3MjBhZWZjYTNmM2ZiOTA3YjYyM2MwZiIsIjY3MjVmNjQ2YWQ3MDg1NWY5YjhkZGYzYiIsIjY3MjVmNmVmNjk5NWM1NGFiZmE1MjNmYyIsIjY3MjYwMDU4Yjg1NDBkNmY5MmVjNDNjMyIsIjY3MjcwNTA5MjExYTZmNDNkYWFkNDgxZiIsIjY3Mjc1MzJiODZiZWJjOTVlOGYxYTk1MiJdLCJpc093bmVyIjp0cnVlLCJlbWFpbFZlcmlmaWVkIjp0cnVlLCJlbWFpbFZlcmlmeUNvZGUiOiI5NzczIiwiaXNBY3RpdmUiOnRydWUsImlzTG9ja2VkIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyNC0xMC0yOFQwODo0MjoxOC44ODRaIiwidXBkYXRlZEF0IjoiMjAyNC0xMS0wM1QxMDo0MDo0My44MDVaIiwiX192IjoyMiwibG9naW5UeXBlIjoiZW1haWwiLCJwcm9wZXJ0aWVzIjpbIjY3MjcwNTA4MjExYTZmNDNkYWFkNDgxZCJdLCJhZGRyZXNzIjoiY2FsaWZvcm5pYSIsImltYWdlIjoicHVibGljL3VwbG9hZHMvaW1hZ2VzLzE3MzA2MDk3MjM1MzAtU2NyZWVuc2hvdCAoMykucG5nIiwicmVzZXJ2YXRpb25zIjpbIjY3Mjc1MzJiODZiZWJjOTVlOGYxYTk1MCJdLCJpYXQiOjE3MzA3OTUyMzAsImV4cCI6MTczMDg4MTYzMH0.cG6Cm3MbGWDmpb1RNEuhQlN25_fIS23dI0sdPhpX9Zk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "description",
+									"value": "sea side view",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": "/C:/Users/ABIR/Pictures/Screenshots/Screenshot (8).png",
+									"disabled": true
+								},
+								{
+									"key": "maxGuests",
+									"value": "4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2024-11-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/update-property-by-id/6725f7186995c54abfa52403",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"update-property-by-id",
+								"6725f7186995c54abfa52403"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add property",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category",
+									"value": "House",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "ontario",
+									"type": "text"
+								},
+								{
+									"key": "roomCount",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "sea view",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "maxGuests",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2024-10-31",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-11-30",
+									"type": "text"
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": [
+										"/C:/Users/ABIR/Pictures/Screenshots/Screenshot (3).png",
+										"/C:/Users/ABIR/Pictures/Screenshots/Screenshot (10).png",
+										"/C:/Users/ABIR/Pictures/Screenshots/Screenshot (10).png",
+										"/C:/Users/ABIR/Pictures/Screenshots/Screenshot (10).png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/add-property",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"add-property"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete property by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"division\": \"General Doctor\",\r\n  \"doctorType\": \"vascularogist\",\r\n  \"dateTimes\": [\r\n    \"2024-10-10T10:30:00Z\",\r\n    \"2024-10-11T14:30:00Z\"\r\n  ],\r\n  \"daysOfWeek\": [\r\n    \"sunday\",\r\n    \"tuesday\"\r\n  ],\r\n  \"consultationType\": \"video\",\r\n  \"doctorId\": \"670127ed7ad3ed2c53e489b1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/room/delete-room-by-id/672222773d585558f17ddc14",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"room",
+								"delete-room-by-id",
+								"672222773d585558f17ddc14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disable a property",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"division\": \"General Doctor\",\r\n  \"doctorType\": \"vascularogist\",\r\n  \"dateTimes\": [\r\n    \"2024-10-10T10:30:00Z\",\r\n    \"2024-10-11T14:30:00Z\"\r\n  ],\r\n  \"daysOfWeek\": [\r\n    \"sunday\",\r\n    \"tuesday\"\r\n  ],\r\n  \"consultationType\": \"video\",\r\n  \"doctorId\": \"670127ed7ad3ed2c53e489b1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/service/disable-service-by-id/670240f95839c596faab28e2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"service",
+								"disable-service-by-id",
+								"670240f95839c596faab28e2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enable a property",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"division\": \"General Doctor\",\r\n  \"doctorType\": \"vascularogist\",\r\n  \"dateTimes\": [\r\n    \"2024-10-10T10:30:00Z\",\r\n    \"2024-10-11T14:30:00Z\"\r\n  ],\r\n  \"daysOfWeek\": [\r\n    \"sunday\",\r\n    \"tuesday\"\r\n  ],\r\n  \"consultationType\": \"video\",\r\n  \"doctorId\": \"670127ed7ad3ed2c53e489b1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/service/enable-service-by-id/670240f95839c596faab28e2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"service",
+								"enable-service-by-id",
+								"670240f95839c596faab28e2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve property by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzIwNmM5ZWIwYzRiYjM0MjJmYjFhMjkiLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoidXNlciIsImZ1bGxOYW1lIjoiYWRtaW4gdXNlciIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbWJiaFB6L2k2QTZOTW9yTHdKTTl0T1dUOTVjYU04b1pDcDlSb21Td1g1UmVuMk54bGdlVksiLCJyb2xlIjpbImFkbWluIl0sIm93bmVyQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicGhvbmUiOiIwMTk5OTk5OTk5OSIsIm5vdGlmaWNhdGlvbnMiOlsiNjcyMGE0NTliNzFiNzc2YzkwOTQxZjk3IiwiNjcyMGE5OWI2OTRiMzk0NjUyMTdlNjM0IiwiNjcyMGFhODU2OTRiMzk0NjUyMTdlNjNiIiwiNjcyMGFkYmJiY2U3OGMwMTA0MzhjM2JlIiwiNjcyMGFkY2JiY2U3OGMwMTA0MzhjM2M2IiwiNjcyMGFlMjRiY2U3OGMwMTA0MzhjM2NmIiwiNjcyMGFlMmFiY2U3OGMwMTA0MzhjM2Q3IiwiNjcyMGFlNGNjNTI4ZmVjM2FmMjUzZTdlIiwiNjcyMGFlNTFjNTI4ZmVjM2FmMjUzZTg2IiwiNjcyMGFlYWNlMTM0MTVlMzU2ZmE2YmQ3IiwiNjcyMGFlYWZlMTM0MTVlMzU2ZmE2YmRmIiwiNjcyMGFlZTNhM2YzZmI5MDdiNjIzYzA3IiwiNjcyMGFlZmNhM2YzZmI5MDdiNjIzYzBmIiwiNjcyNWY2NDZhZDcwODU1ZjliOGRkZjNiIiwiNjcyNWY2ZWY2OTk1YzU0YWJmYTUyM2ZjIiwiNjcyNjAwNThiODU0MGQ2ZjkyZWM0M2MzIiwiNjcyNzA1MDkyMTFhNmY0M2RhYWQ0ODFmIiwiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUyIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDk0IiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDljIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGE0IiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFjIiwiNjcyZWYzMWYzMzQ4NmM5NjJjY2JkNTNjIiwiNjcyZWYzZGUzMzQ4NmM5NjJjY2JkNTQ4IiwiNjcyZWY2NzAzMzQ4NmM5NjJjY2JkNTU3IiwiNjcyZjAwOTMzMzQ4NmM5NjJjY2JkNTdlIiwiNjcyZjAxNjEzMzQ4NmM5NjJjY2JkNThlIiwiNjcyZjAxZTczMzQ4NmM5NjJjY2JkNTllIiwiNjcyZjAyNTQzMzQ4NmM5NjJjY2JkNWFjIiwiNjcyZjAyYzkzMzQ4NmM5NjJjY2JkNWJhIiwiNjcyZjA1NjUzMzQ4NmM5NjJjY2JkNWRhIiwiNjcyZjA1OTAzMzQ4NmM5NjJjY2JkNWU0IiwiNjcyZjFmYmM4OTgzMDY0MjRiNjVlMTczIiwiNjcyZjI1MDIyN2M3NDcwZWE1OGQ1MzhiIiwiNjcyZjI2ODhkNGFiZTMyMjZiNDk3NjNjIiwiNjcyZjI3MGYxM2QzNmM0OGNlYjlmNzhkIiwiNjcyZjI3ZWUxM2QzNmM0OGNlYjlmNzk4Il0sImlzT3duZXIiOmZhbHNlLCJlbWFpbFZlcmlmaWVkIjpmYWxzZSwiZW1haWxWZXJpZnlDb2RlIjoiMTA0NiIsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMjlUMDU6MDM6MjYuNTAxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTEtMDlUMDk6MTQ6MjIuOTIxWiIsIl9fdiI6MzcsImxvZ2luVHlwZSI6ImVtYWlsIiwicHJvcGVydGllcyI6W10sInJlc2VydmF0aW9ucyI6W10sImludmVzdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwiaXNJbnZlc3RvciI6ZmFsc2UsInJvb21zIjowLCJpYXQiOjE3MzExNDM3MjAsImV4cCI6MTczMTIzMDEyMH0.6-mx7fvNnEbWJY0PQRudbUmZXGuS2jg2X_3MnE5HcD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"division\": \"General Doctor\",\r\n  \"doctorType\": \"vascularogist\",\r\n  \"dateTimes\": [\r\n    \"2024-10-10T10:30:00Z\",\r\n    \"2024-10-11T14:30:00Z\"\r\n  ],\r\n  \"daysOfWeek\": [\r\n    \"sunday\",\r\n    \"tuesday\"\r\n  ],\r\n  \"consultationType\": \"video\",\r\n  \"doctorId\": \"670127ed7ad3ed2c53e489b1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/approve-property-by-id/672f27ee13d36c48ceb9f796",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"approve-property-by-id",
+								"672f27ee13d36c48ceb9f796"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel property by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzIwNmM5ZWIwYzRiYjM0MjJmYjFhMjkiLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoidXNlciIsImZ1bGxOYW1lIjoiYWRtaW4gdXNlciIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbWJiaFB6L2k2QTZOTW9yTHdKTTl0T1dUOTVjYU04b1pDcDlSb21Td1g1UmVuMk54bGdlVksiLCJyb2xlIjpbImFkbWluIl0sIm93bmVyQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicGhvbmUiOiIwMTk5OTk5OTk5OSIsIm5vdGlmaWNhdGlvbnMiOlsiNjcyMGE0NTliNzFiNzc2YzkwOTQxZjk3IiwiNjcyMGE5OWI2OTRiMzk0NjUyMTdlNjM0IiwiNjcyMGFhODU2OTRiMzk0NjUyMTdlNjNiIiwiNjcyMGFkYmJiY2U3OGMwMTA0MzhjM2JlIiwiNjcyMGFkY2JiY2U3OGMwMTA0MzhjM2M2IiwiNjcyMGFlMjRiY2U3OGMwMTA0MzhjM2NmIiwiNjcyMGFlMmFiY2U3OGMwMTA0MzhjM2Q3IiwiNjcyMGFlNGNjNTI4ZmVjM2FmMjUzZTdlIiwiNjcyMGFlNTFjNTI4ZmVjM2FmMjUzZTg2IiwiNjcyMGFlYWNlMTM0MTVlMzU2ZmE2YmQ3IiwiNjcyMGFlYWZlMTM0MTVlMzU2ZmE2YmRmIiwiNjcyMGFlZTNhM2YzZmI5MDdiNjIzYzA3IiwiNjcyMGFlZmNhM2YzZmI5MDdiNjIzYzBmIiwiNjcyNWY2NDZhZDcwODU1ZjliOGRkZjNiIiwiNjcyNWY2ZWY2OTk1YzU0YWJmYTUyM2ZjIiwiNjcyNjAwNThiODU0MGQ2ZjkyZWM0M2MzIiwiNjcyNzA1MDkyMTFhNmY0M2RhYWQ0ODFmIiwiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUyIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDk0IiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDljIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGE0IiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFjIiwiNjcyZWYzMWYzMzQ4NmM5NjJjY2JkNTNjIiwiNjcyZWYzZGUzMzQ4NmM5NjJjY2JkNTQ4IiwiNjcyZWY2NzAzMzQ4NmM5NjJjY2JkNTU3IiwiNjcyZjAwOTMzMzQ4NmM5NjJjY2JkNTdlIiwiNjcyZjAxNjEzMzQ4NmM5NjJjY2JkNThlIiwiNjcyZjAxZTczMzQ4NmM5NjJjY2JkNTllIiwiNjcyZjAyNTQzMzQ4NmM5NjJjY2JkNWFjIiwiNjcyZjAyYzkzMzQ4NmM5NjJjY2JkNWJhIiwiNjcyZjA1NjUzMzQ4NmM5NjJjY2JkNWRhIiwiNjcyZjA1OTAzMzQ4NmM5NjJjY2JkNWU0IiwiNjcyZjFmYmM4OTgzMDY0MjRiNjVlMTczIiwiNjcyZjI1MDIyN2M3NDcwZWE1OGQ1MzhiIiwiNjcyZjI2ODhkNGFiZTMyMjZiNDk3NjNjIiwiNjcyZjI3MGYxM2QzNmM0OGNlYjlmNzhkIiwiNjcyZjI3ZWUxM2QzNmM0OGNlYjlmNzk4Il0sImlzT3duZXIiOmZhbHNlLCJlbWFpbFZlcmlmaWVkIjpmYWxzZSwiZW1haWxWZXJpZnlDb2RlIjoiMTA0NiIsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMjlUMDU6MDM6MjYuNTAxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTEtMDlUMDk6MTQ6MjIuOTIxWiIsIl9fdiI6MzcsImxvZ2luVHlwZSI6ImVtYWlsIiwicHJvcGVydGllcyI6W10sInJlc2VydmF0aW9ucyI6W10sImludmVzdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwiaXNJbnZlc3RvciI6ZmFsc2UsInJvb21zIjowLCJpYXQiOjE3MzExNDM3MjAsImV4cCI6MTczMTIzMDEyMH0.6-mx7fvNnEbWJY0PQRudbUmZXGuS2jg2X_3MnE5HcD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"division\": \"General Doctor\",\r\n  \"doctorType\": \"vascularogist\",\r\n  \"dateTimes\": [\r\n    \"2024-10-10T10:30:00Z\",\r\n    \"2024-10-11T14:30:00Z\"\r\n  ],\r\n  \"daysOfWeek\": [\r\n    \"sunday\",\r\n    \"tuesday\"\r\n  ],\r\n  \"consultationType\": \"video\",\r\n  \"doctorId\": \"670127ed7ad3ed2c53e489b1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/property/cancel-property-by-id/672f27ee13d36c48ceb9f796",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"property",
+								"cancel-property-by-id",
+								"672f27ee13d36c48ceb9f796"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservations",
+			"item": [
+				{
+					"name": "get all reservations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25zdWx0YXRpb25VcGNvbWluZyI6W10sImVtYWlsVmVyaWZpZWQiOmZhbHNlLCJfaWQiOiI2NzAxMjcyMjUzN2UxNDk1OTliN2ZjMDgiLCJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFZDVHNaN0tJNS4uWEdvYS41b0xZU3VzdTVqTzVCcEhEb1R2NTFpVjl2eWhZN1IwTWkzWWp1Iiwicm9sZSI6ImFkbWluIiwiZG9jdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwiYmFsYW5jZSI6MCwiY29uc3VsdGF0aW9uSGlzdG9yeSI6W10sInVwY29taW5nSGlzdG9yeSI6W10sIm5vdGlmaWNhdGlvbnMiOlsiNjcwMTI3ZWQ3YWQzZWQyYzUzZTQ4OWIzIiwiNjcwMTI4MzU3YWQzZWQyYzUzZTQ4OWJjIiwiNjcwMTJiYjM3YWQzZWQyYzUzZTQ4OWMzIiwiNjcwMzYwYTU2OTM2NjRkMjgyZWFiM2FhIl0sImlzRG9jdG9yIjpmYWxzZSwiaXNWZXJpZmllZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMDVUMTE6NDY6NDIuOTYzWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTAtMDdUMDQ6MTY6MzcuMjQ0WiIsIl9fdiI6NCwic2VydmljZXMiOltdLCJpYXQiOjE3Mjk1MDcxNDAsImV4cCI6MTcyOTU5MzU0MH0.7VMfQk1Chc5YsvCWR_haBdtLnJPjdpBSM_mS-Q8lHRg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/reservation/get-all-reservations",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reservation",
+								"get-all-reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one reservation by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/reservation/get-reservation-by-id/67275311d8a90bda28272823",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reservation",
+								"get-reservation-by-id",
+								"67275311d8a90bda28272823"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get reservation by user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbnZlc3RvckFwcGxpY2F0aW9uU3RhdHVzIjoibm90QXBwbGllZCIsInJvb21zIjowLCJpc0ludmVzdG9yIjpmYWxzZSwiX2lkIjoiNjcxZjRlNmFhYzY3M2IyZGYzNTIxZjc1IiwiZmlyc3ROYW1lIjoicGloaWoiLCJsYXN0TmFtZSI6ImppaGlwIiwiZnVsbE5hbWUiOiJwaWhpajYwNDIwIHBpaGlqNjA0MjAiLCJlbWFpbCI6InBpaGlqNjA0MjBAcmVnaXNodWIuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkMDVlemwzSEVzelNmNERQcnN2WnEudTBlb0wyejhZSnYwLkJqVFN0SjdTNkIuUHlJUjd5dlciLCJyb2xlIjpbImd1ZXN0Iiwib3duZXIiXSwib3duZXJBcHBsaWNhdGlvblN0YXR1cyI6ImFwcHJvdmVkIiwicGhvbmUiOiIwMTk5OTk5OTk5Iiwibm90aWZpY2F0aW9ucyI6WyI2NzIwYTQ1OWI3MWI3NzZjOTA5NDFmOTciLCI2NzIwYTk5YjY5NGIzOTQ2NTIxN2U2MzQiLCI2NzIwYWE4NTY5NGIzOTQ2NTIxN2U2M2IiLCI2NzIwYWRiYmJjZTc4YzAxMDQzOGMzYmUiLCI2NzIwYWRjYmJjZTc4YzAxMDQzOGMzYzYiLCI2NzIwYWUyNGJjZTc4YzAxMDQzOGMzY2YiLCI2NzIwYWUyYWJjZTc4YzAxMDQzOGMzZDciLCI2NzIwYWU0Y2M1MjhmZWMzYWYyNTNlN2UiLCI2NzIwYWU1MWM1MjhmZWMzYWYyNTNlODYiLCI2NzIwYWVhY2UxMzQxNWUzNTZmYTZiZDciLCI2NzIwYWVhZmUxMzQxNWUzNTZmYTZiZGYiLCI2NzIwYWVlM2EzZjNmYjkwN2I2MjNjMDciLCI2NzIwYWVmY2EzZjNmYjkwN2I2MjNjMGYiLCI2NzI1ZjY0NmFkNzA4NTVmOWI4ZGRmM2IiLCI2NzI1ZjZlZjY5OTVjNTRhYmZhNTIzZmMiLCI2NzI2MDA1OGI4NTQwZDZmOTJlYzQzYzMiLCI2NzI3MDUwOTIxMWE2ZjQzZGFhZDQ4MWYiLCI2NzI3NTMyYjg2YmViYzk1ZThmMWE5NTIiLCI2NzI5ZDcwZjNhZDljMmVlMzQ1NGQ0OTQiLCI2NzI5ZDcyNDNhZDljMmVlMzQ1NGQ0OWMiLCI2NzI5ZDcyYjNhZDljMmVlMzQ1NGQ0YTQiLCI2NzI5ZDczNDNhZDljMmVlMzQ1NGQ0YWMiXSwiaXNPd25lciI6dHJ1ZSwiZW1haWxWZXJpZmllZCI6ZmFsc2UsImVtYWlsVmVyaWZ5Q29kZSI6Ijg0MTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNMb2NrZWQiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI0LTEwLTI4VDA4OjQyOjE4Ljg4NFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTExLTA2VDA0OjQ4OjU0LjUxMVoiLCJfX3YiOjI2LCJsb2dpblR5cGUiOiJlbWFpbCIsInByb3BlcnRpZXMiOlsiNjcyNzA1MDgyMTFhNmY0M2RhYWQ0ODFkIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDkyIiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDlhIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGEyIiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFhIl0sImFkZHJlc3MiOiJjYWxpZm9ybmlhIiwiaW1hZ2UiOiJwdWJsaWMvdXBsb2Fkcy9pbWFnZXMvMTczMDYwOTcyMzUzMC1TY3JlZW5zaG90ICgzKS5wbmciLCJyZXNlcnZhdGlvbnMiOlsiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUwIl0sImlhdCI6MTczMTEzOTEwNywiZXhwIjoxNzMxMjI1NTA3fQ.ue1KDtFISlOAWvC1zTgxtt2JpegY2M8vnr8f4BTBGPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "patientId",
+									"value": "67020d51bf92bbc342325f6f",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/reservation/get-reservation-by-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reservation",
+								"get-reservation-by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book/create a reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzJmMWU4NTMzNDg2Yzk2MmNjYmQ2MDEiLCJmaXJzdE5hbWUiOiJoZWhvYjIxNDQ5QGNpcm9uZXguY29tIiwibGFzdE5hbWUiOiJoZWhvYjIxNDQ5QGNpcm9uZXguY29tIiwiZnVsbE5hbWUiOiJoZWhvYjIxNDQ5QGNpcm9uZXguY29tIGhlaG9iMjE0NDlAY2lyb25leC5jb20iLCJlbWFpbCI6ImhlaG9iMjE0NDlAY2lyb25leC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRwQVZoTHozNlVDR3lBSEFRTHU4aXJ1RlhhS3ZlbzBsZktuMDhOTzRaVWZjUXlMMmZwanc1NiIsImxvZ2luVHlwZSI6ImVtYWlsIiwicm9sZSI6WyJndWVzdCJdLCJvd25lckFwcGxpY2F0aW9uU3RhdHVzIjoibm90QXBwbGllZCIsImludmVzdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicm9vbXMiOjAsInBob25lIjoiMDE5OTk5OTk5OTkiLCJwcm9wZXJ0aWVzIjpbXSwicmVzZXJ2YXRpb25zIjpbXSwibm90aWZpY2F0aW9ucyI6W10sImlzT3duZXIiOmZhbHNlLCJpc0ludmVzdG9yIjpmYWxzZSwiZW1haWxWZXJpZmllZCI6ZmFsc2UsImVtYWlsVmVyaWZ5Q29kZSI6IjM5MTkiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNMb2NrZWQiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI0LTExLTA5VDA4OjM0OjEzLjAxMFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTExLTA5VDA4OjM0OjEzLjAxMFoiLCJfX3YiOjAsImlhdCI6MTczMTE0MTQ2NiwiZXhwIjoxNzMxMjI3ODY2fQ.u7sCnuiX6RiKYuhcAJ8uS853545LSv6O6kbRoeOESBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "propertyId",
+									"value": "6725f7186995c54abfa52403",
+									"type": "text"
+								},
+								{
+									"key": "checkInDate",
+									"value": "2024-11-02",
+									"type": "text"
+								},
+								{
+									"key": "checkOutDate",
+									"value": "2024-11-02",
+									"type": "text"
+								},
+								{
+									"key": "guests",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "totalPrice",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/reservation/reserve-property",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reservation",
+								"reserve-property"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "get all categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/category/get-all-categories",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category",
+								"get-all-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "doctor@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "doctor",
+									"type": "text"
+								},
+								{
+									"key": "nhsNumber",
+									"value": "211",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "doctor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/category/get-category/6721c9944925a5cef2e961d0",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category",
+								"get-category",
+								"6721c9944925a5cef2e961d0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Rooms",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/category/add-category",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category",
+								"add-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit a category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "updated",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "updated",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/category/edit-category/6721c9944925a5cef2e961d0",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category",
+								"edit-category",
+								"6721c9944925a5cef2e961d0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/category/delete-category/6721c9944925a5cef2e961d0",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category",
+								"delete-category",
+								"6721c9944925a5cef2e961d0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "review rating",
+			"item": [
+				{
+					"name": "get all reviews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "doctorId",
+									"value": "670127ed7ad3ed2c53e489b1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/review/all-reviews",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"review",
+								"all-reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one review by review id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "doctorId",
+									"value": "670127ed7ad3ed2c53e489b1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/review/get-one-review/672f200829526c6e86aaf280",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"review",
+								"get-one-review",
+								"672f200829526c6e86aaf280"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get review by user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbnZlc3RvckFwcGxpY2F0aW9uU3RhdHVzIjoibm90QXBwbGllZCIsInJvb21zIjowLCJpc0ludmVzdG9yIjpmYWxzZSwiX2lkIjoiNjcxZjRlNmFhYzY3M2IyZGYzNTIxZjc1IiwiZmlyc3ROYW1lIjoicGloaWoiLCJsYXN0TmFtZSI6ImppaGlwIiwiZnVsbE5hbWUiOiJwaWhpajYwNDIwIHBpaGlqNjA0MjAiLCJlbWFpbCI6InBpaGlqNjA0MjBAcmVnaXNodWIuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkMDVlemwzSEVzelNmNERQcnN2WnEudTBlb0wyejhZSnYwLkJqVFN0SjdTNkIuUHlJUjd5dlciLCJyb2xlIjpbImd1ZXN0Iiwib3duZXIiXSwib3duZXJBcHBsaWNhdGlvblN0YXR1cyI6ImFwcHJvdmVkIiwicGhvbmUiOiIwMTk5OTk5OTk5Iiwibm90aWZpY2F0aW9ucyI6WyI2NzIwYTQ1OWI3MWI3NzZjOTA5NDFmOTciLCI2NzIwYTk5YjY5NGIzOTQ2NTIxN2U2MzQiLCI2NzIwYWE4NTY5NGIzOTQ2NTIxN2U2M2IiLCI2NzIwYWRiYmJjZTc4YzAxMDQzOGMzYmUiLCI2NzIwYWRjYmJjZTc4YzAxMDQzOGMzYzYiLCI2NzIwYWUyNGJjZTc4YzAxMDQzOGMzY2YiLCI2NzIwYWUyYWJjZTc4YzAxMDQzOGMzZDciLCI2NzIwYWU0Y2M1MjhmZWMzYWYyNTNlN2UiLCI2NzIwYWU1MWM1MjhmZWMzYWYyNTNlODYiLCI2NzIwYWVhY2UxMzQxNWUzNTZmYTZiZDciLCI2NzIwYWVhZmUxMzQxNWUzNTZmYTZiZGYiLCI2NzIwYWVlM2EzZjNmYjkwN2I2MjNjMDciLCI2NzIwYWVmY2EzZjNmYjkwN2I2MjNjMGYiLCI2NzI1ZjY0NmFkNzA4NTVmOWI4ZGRmM2IiLCI2NzI1ZjZlZjY5OTVjNTRhYmZhNTIzZmMiLCI2NzI2MDA1OGI4NTQwZDZmOTJlYzQzYzMiLCI2NzI3MDUwOTIxMWE2ZjQzZGFhZDQ4MWYiLCI2NzI3NTMyYjg2YmViYzk1ZThmMWE5NTIiLCI2NzI5ZDcwZjNhZDljMmVlMzQ1NGQ0OTQiLCI2NzI5ZDcyNDNhZDljMmVlMzQ1NGQ0OWMiLCI2NzI5ZDcyYjNhZDljMmVlMzQ1NGQ0YTQiLCI2NzI5ZDczNDNhZDljMmVlMzQ1NGQ0YWMiXSwiaXNPd25lciI6dHJ1ZSwiZW1haWxWZXJpZmllZCI6ZmFsc2UsImVtYWlsVmVyaWZ5Q29kZSI6Ijg0MTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNMb2NrZWQiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI0LTEwLTI4VDA4OjQyOjE4Ljg4NFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTExLTA2VDA0OjQ4OjU0LjUxMVoiLCJfX3YiOjI2LCJsb2dpblR5cGUiOiJlbWFpbCIsInByb3BlcnRpZXMiOlsiNjcyNzA1MDgyMTFhNmY0M2RhYWQ0ODFkIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDkyIiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDlhIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGEyIiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFhIl0sImFkZHJlc3MiOiJjYWxpZm9ybmlhIiwiaW1hZ2UiOiJwdWJsaWMvdXBsb2Fkcy9pbWFnZXMvMTczMDYwOTcyMzUzMC1TY3JlZW5zaG90ICgzKS5wbmciLCJyZXNlcnZhdGlvbnMiOlsiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUwIl0sImlhdCI6MTczMTEzOTEwNywiZXhwIjoxNzMxMjI1NTA3fQ.ue1KDtFISlOAWvC1zTgxtt2JpegY2M8vnr8f4BTBGPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "670b4e40ce98760d0778097f",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/review/review-by-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"review",
+								"review-by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a review rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbnZlc3RvckFwcGxpY2F0aW9uU3RhdHVzIjoibm90QXBwbGllZCIsInJvb21zIjowLCJpc0ludmVzdG9yIjpmYWxzZSwiX2lkIjoiNjcxZjRlNmFhYzY3M2IyZGYzNTIxZjc1IiwiZmlyc3ROYW1lIjoicGloaWoiLCJsYXN0TmFtZSI6ImppaGlwIiwiZnVsbE5hbWUiOiJwaWhpajYwNDIwIHBpaGlqNjA0MjAiLCJlbWFpbCI6InBpaGlqNjA0MjBAcmVnaXNodWIuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkMDVlemwzSEVzelNmNERQcnN2WnEudTBlb0wyejhZSnYwLkJqVFN0SjdTNkIuUHlJUjd5dlciLCJyb2xlIjpbImd1ZXN0Iiwib3duZXIiXSwib3duZXJBcHBsaWNhdGlvblN0YXR1cyI6ImFwcHJvdmVkIiwicGhvbmUiOiIwMTk5OTk5OTk5Iiwibm90aWZpY2F0aW9ucyI6WyI2NzIwYTQ1OWI3MWI3NzZjOTA5NDFmOTciLCI2NzIwYTk5YjY5NGIzOTQ2NTIxN2U2MzQiLCI2NzIwYWE4NTY5NGIzOTQ2NTIxN2U2M2IiLCI2NzIwYWRiYmJjZTc4YzAxMDQzOGMzYmUiLCI2NzIwYWRjYmJjZTc4YzAxMDQzOGMzYzYiLCI2NzIwYWUyNGJjZTc4YzAxMDQzOGMzY2YiLCI2NzIwYWUyYWJjZTc4YzAxMDQzOGMzZDciLCI2NzIwYWU0Y2M1MjhmZWMzYWYyNTNlN2UiLCI2NzIwYWU1MWM1MjhmZWMzYWYyNTNlODYiLCI2NzIwYWVhY2UxMzQxNWUzNTZmYTZiZDciLCI2NzIwYWVhZmUxMzQxNWUzNTZmYTZiZGYiLCI2NzIwYWVlM2EzZjNmYjkwN2I2MjNjMDciLCI2NzIwYWVmY2EzZjNmYjkwN2I2MjNjMGYiLCI2NzI1ZjY0NmFkNzA4NTVmOWI4ZGRmM2IiLCI2NzI1ZjZlZjY5OTVjNTRhYmZhNTIzZmMiLCI2NzI2MDA1OGI4NTQwZDZmOTJlYzQzYzMiLCI2NzI3MDUwOTIxMWE2ZjQzZGFhZDQ4MWYiLCI2NzI3NTMyYjg2YmViYzk1ZThmMWE5NTIiLCI2NzI5ZDcwZjNhZDljMmVlMzQ1NGQ0OTQiLCI2NzI5ZDcyNDNhZDljMmVlMzQ1NGQ0OWMiLCI2NzI5ZDcyYjNhZDljMmVlMzQ1NGQ0YTQiLCI2NzI5ZDczNDNhZDljMmVlMzQ1NGQ0YWMiXSwiaXNPd25lciI6dHJ1ZSwiZW1haWxWZXJpZmllZCI6ZmFsc2UsImVtYWlsVmVyaWZ5Q29kZSI6Ijg0MTQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNMb2NrZWQiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI0LTEwLTI4VDA4OjQyOjE4Ljg4NFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTExLTA2VDA0OjQ4OjU0LjUxMVoiLCJfX3YiOjI2LCJsb2dpblR5cGUiOiJlbWFpbCIsInByb3BlcnRpZXMiOlsiNjcyNzA1MDgyMTFhNmY0M2RhYWQ0ODFkIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDkyIiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDlhIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGEyIiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFhIl0sImFkZHJlc3MiOiJjYWxpZm9ybmlhIiwiaW1hZ2UiOiJwdWJsaWMvdXBsb2Fkcy9pbWFnZXMvMTczMDYwOTcyMzUzMC1TY3JlZW5zaG90ICgzKS5wbmciLCJyZXNlcnZhdGlvbnMiOlsiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUwIl0sImlhdCI6MTczMTEzOTEwNywiZXhwIjoxNzMxMjI1NTA3fQ.ue1KDtFISlOAWvC1zTgxtt2JpegY2M8vnr8f4BTBGPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "propertyId",
+									"value": "6725f7186995c54abfa52403",
+									"type": "text"
+								},
+								{
+									"key": "review",
+									"value": "nice & attractive",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/review/add-review",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"review",
+								"add-review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a review rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzFmNGU2YWFjNjczYjJkZjM1MjFmNzUiLCJmaXJzdE5hbWUiOiJwaWhpaiIsImxhc3ROYW1lIjoiamloaXAiLCJmdWxsTmFtZSI6InBpaGlqNjA0MjAgcGloaWo2MDQyMCIsImVtYWlsIjoicGloaWo2MDQyMEByZWdpc2h1Yi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwNWV6bDNIRXN6U2Y0RFByc3ZacS51MGVvTDJ6OFlKdjAuQmpUU3RKN1M2Qi5QeUlSN3l2VyIsInJvbGUiOlsiZ3Vlc3QiLCJvd25lciJdLCJvd25lckFwcGxpY2F0aW9uU3RhdHVzIjoiYXBwcm92ZWQiLCJwaG9uZSI6IjAxOTk5OTk5OTkiLCJub3RpZmljYXRpb25zIjpbIjY3MjBhNDU5YjcxYjc3NmM5MDk0MWY5NyIsIjY3MjBhOTliNjk0YjM5NDY1MjE3ZTYzNCIsIjY3MjBhYTg1Njk0YjM5NDY1MjE3ZTYzYiIsIjY3MjBhZGJiYmNlNzhjMDEwNDM4YzNiZSIsIjY3MjBhZGNiYmNlNzhjMDEwNDM4YzNjNiIsIjY3MjBhZTI0YmNlNzhjMDEwNDM4YzNjZiIsIjY3MjBhZTJhYmNlNzhjMDEwNDM4YzNkNyIsIjY3MjBhZTRjYzUyOGZlYzNhZjI1M2U3ZSIsIjY3MjBhZTUxYzUyOGZlYzNhZjI1M2U4NiIsIjY3MjBhZWFjZTEzNDE1ZTM1NmZhNmJkNyIsIjY3MjBhZWFmZTEzNDE1ZTM1NmZhNmJkZiIsIjY3MjBhZWUzYTNmM2ZiOTA3YjYyM2MwNyIsIjY3MjBhZWZjYTNmM2ZiOTA3YjYyM2MwZiIsIjY3MjVmNjQ2YWQ3MDg1NWY5YjhkZGYzYiIsIjY3MjVmNmVmNjk5NWM1NGFiZmE1MjNmYyIsIjY3MjYwMDU4Yjg1NDBkNmY5MmVjNDNjMyIsIjY3MjcwNTA5MjExYTZmNDNkYWFkNDgxZiIsIjY3Mjc1MzJiODZiZWJjOTVlOGYxYTk1MiJdLCJpc093bmVyIjp0cnVlLCJlbWFpbFZlcmlmaWVkIjp0cnVlLCJlbWFpbFZlcmlmeUNvZGUiOiI5NzczIiwiaXNBY3RpdmUiOnRydWUsImlzTG9ja2VkIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyNC0xMC0yOFQwODo0MjoxOC44ODRaIiwidXBkYXRlZEF0IjoiMjAyNC0xMS0wM1QxMDo0MDo0My44MDVaIiwiX192IjoyMiwibG9naW5UeXBlIjoiZW1haWwiLCJwcm9wZXJ0aWVzIjpbIjY3MjcwNTA4MjExYTZmNDNkYWFkNDgxZCJdLCJhZGRyZXNzIjoiY2FsaWZvcm5pYSIsImltYWdlIjoicHVibGljL3VwbG9hZHMvaW1hZ2VzLzE3MzA2MDk3MjM1MzAtU2NyZWVuc2hvdCAoMykucG5nIiwicmVzZXJ2YXRpb25zIjpbIjY3Mjc1MzJiODZiZWJjOTVlOGYxYTk1MCJdLCJpYXQiOjE3MzA2OTEyMDUsImV4cCI6MTczMDc3NzYwNX0._BUIOUT7qRbiv3UKTonjLmDRABR7U7AXY5jXY3aGqw4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "review",
+									"value": "not nice ",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/review/update-review/67276edeb50212de313d2d71",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"review",
+								"update-review",
+								"67276edeb50212de313d2d71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a review rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzFmNGU2YWFjNjczYjJkZjM1MjFmNzUiLCJmaXJzdE5hbWUiOiJwaWhpaiIsImxhc3ROYW1lIjoiamloaXAiLCJmdWxsTmFtZSI6InBpaGlqNjA0MjAgcGloaWo2MDQyMCIsImVtYWlsIjoicGloaWo2MDQyMEByZWdpc2h1Yi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwNWV6bDNIRXN6U2Y0RFByc3ZacS51MGVvTDJ6OFlKdjAuQmpUU3RKN1M2Qi5QeUlSN3l2VyIsInJvbGUiOlsiZ3Vlc3QiLCJvd25lciJdLCJvd25lckFwcGxpY2F0aW9uU3RhdHVzIjoiYXBwcm92ZWQiLCJwaG9uZSI6IjAxOTk5OTk5OTkiLCJub3RpZmljYXRpb25zIjpbIjY3MjBhNDU5YjcxYjc3NmM5MDk0MWY5NyIsIjY3MjBhOTliNjk0YjM5NDY1MjE3ZTYzNCIsIjY3MjBhYTg1Njk0YjM5NDY1MjE3ZTYzYiIsIjY3MjBhZGJiYmNlNzhjMDEwNDM4YzNiZSIsIjY3MjBhZGNiYmNlNzhjMDEwNDM4YzNjNiIsIjY3MjBhZTI0YmNlNzhjMDEwNDM4YzNjZiIsIjY3MjBhZTJhYmNlNzhjMDEwNDM4YzNkNyIsIjY3MjBhZTRjYzUyOGZlYzNhZjI1M2U3ZSIsIjY3MjBhZTUxYzUyOGZlYzNhZjI1M2U4NiIsIjY3MjBhZWFjZTEzNDE1ZTM1NmZhNmJkNyIsIjY3MjBhZWFmZTEzNDE1ZTM1NmZhNmJkZiIsIjY3MjBhZWUzYTNmM2ZiOTA3YjYyM2MwNyIsIjY3MjBhZWZjYTNmM2ZiOTA3YjYyM2MwZiIsIjY3MjVmNjQ2YWQ3MDg1NWY5YjhkZGYzYiIsIjY3MjVmNmVmNjk5NWM1NGFiZmE1MjNmYyIsIjY3MjYwMDU4Yjg1NDBkNmY5MmVjNDNjMyIsIjY3MjcwNTA5MjExYTZmNDNkYWFkNDgxZiIsIjY3Mjc1MzJiODZiZWJjOTVlOGYxYTk1MiJdLCJpc093bmVyIjp0cnVlLCJlbWFpbFZlcmlmaWVkIjp0cnVlLCJlbWFpbFZlcmlmeUNvZGUiOiI5NzczIiwiaXNBY3RpdmUiOnRydWUsImlzTG9ja2VkIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyNC0xMC0yOFQwODo0MjoxOC44ODRaIiwidXBkYXRlZEF0IjoiMjAyNC0xMS0wM1QxMDo0MDo0My44MDVaIiwiX192IjoyMiwibG9naW5UeXBlIjoiZW1haWwiLCJwcm9wZXJ0aWVzIjpbIjY3MjcwNTA4MjExYTZmNDNkYWFkNDgxZCJdLCJhZGRyZXNzIjoiY2FsaWZvcm5pYSIsImltYWdlIjoicHVibGljL3VwbG9hZHMvaW1hZ2VzLzE3MzA2MDk3MjM1MzAtU2NyZWVuc2hvdCAoMykucG5nIiwicmVzZXJ2YXRpb25zIjpbIjY3Mjc1MzJiODZiZWJjOTVlOGYxYTk1MCJdLCJpYXQiOjE3MzA2OTI0NDMsImV4cCI6MTczMDc3ODg0M30.M74ScBMuYm_eAFTxG62Ir_nYO8uL01_ZZgaNosNRpmU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/review/delete-review/67276edeb50212de313d2d71?reviewId",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"review",
+								"delete-review",
+								"67276edeb50212de313d2d71"
+							],
+							"query": [
+								{
+									"key": "reviewId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "terms of service",
+			"item": [
+				{
+					"name": "get all terms of services",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "doctorId",
+									"value": "670127ed7ad3ed2c53e489b1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/terms-of-service/get-terms-of-service",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"terms-of-service",
+								"get-terms-of-service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add terms of service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "Terms of service (also known as terms of use and terms and conditions, commonly abbreviated as TOS or ToS, ToU or T&C) are the legal agreements between a service provider and a person who wants to use that service. The person must agree to abide by the terms of service in order to use the offered service",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/terms-of-service/add-terms-of-service",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"terms-of-service",
+								"add-terms-of-service"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "faqs",
+			"item": [
+				{
+					"name": "add faq",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "question",
+									"value": "why should i use this",
+									"type": "text"
+								},
+								{
+									"key": "answer",
+									"value": "because this is amazing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/faq/add-faq?question=why should i use this&answer=because this is amazing",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"faq",
+								"add-faq"
+							],
+							"query": [
+								{
+									"key": "question",
+									"value": "why should i use this"
+								},
+								{
+									"key": "answer",
+									"value": "because this is amazing"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all faqs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "question",
+									"value": "why should i use this",
+									"type": "text"
+								},
+								{
+									"key": "answer",
+									"value": "because this is amazing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/faq/get-all-faqs",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"faq",
+								"get-all-faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update faq",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/faq/update-faq?faqId=671377457972711a62117aa8&question=updated question&answer=updated answer",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"faq",
+								"update-faq"
+							],
+							"query": [
+								{
+									"key": "faqId",
+									"value": "671377457972711a62117aa8"
+								},
+								{
+									"key": "question",
+									"value": "updated question"
+								},
+								{
+									"key": "answer",
+									"value": "updated answer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete an faq",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "question",
+									"value": "why should i use this",
+									"type": "text"
+								},
+								{
+									"key": "answer",
+									"value": "because this is amazing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/faq/delete-faq/6713783a86dc46f0be7e470e",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"faq",
+								"delete-faq",
+								"6713783a86dc46f0be7e470e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "get notificaion by userId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "67012722537e149599b7fc08",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/notifications-by-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"notifications-by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all notificaions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "67012722537e149599b7fc08",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/all-notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"all-notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "website content",
+			"item": [
+				{
+					"name": "get home content",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "67012722537e149599b7fc08",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/content/get-home-content",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"content",
+								"get-home-content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get about content",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "67012722537e149599b7fc08",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/content/get-about-content",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"content",
+								"get-about-content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update home content",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "heroTitle",
+									"value": "Experience Unforgettable Stays\nwith Our Easy Room Booking",
+									"type": "text"
+								},
+								{
+									"key": "heroDescription",
+									"value": "Discover the perfect accommodation tailored just for you, whether it’s a weekend getaway or a business trip.",
+									"type": "text"
+								},
+								{
+									"key": "roomsTitle",
+									"value": "Explore Amazing Rooms",
+									"type": "text"
+								},
+								{
+									"key": "propertyTitle",
+									"value": "Transform your property into a lucrative\nexperience for travelers",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/content/update-home-content",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"content",
+								"update-home-content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update about content",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "heroTitle",
+									"value": "Know Our History...",
+									"type": "text"
+								},
+								{
+									"key": "heroDescription",
+									"value": "At Appartali we believe that every journey begins with a place to call home, and we’re dedicated to making your stay unforgettable.",
+									"type": "text"
+								},
+								{
+									"key": "mainTitle",
+									"value": "Booking room anytime",
+									"type": "text"
+								},
+								{
+									"key": "firstStepTitle",
+									"value": "Developing Confident and\nSuccessful Learners",
+									"type": "text"
+								},
+								{
+									"key": "firstStepDescription",
+									"value": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al",
+									"type": "text"
+								},
+								{
+									"key": "secondStepTitle",
+									"value": "Invest your property",
+									"type": "text"
+								},
+								{
+									"key": "secondStepDescription",
+									"value": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/content/update-about-content",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"content",
+								"update-about-content"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "get all blogs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "67012722537e149599b7fc08",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/blog/get-all-blogs",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"blog",
+								"get-all-blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one blog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "67012722537e149599b7fc08",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/blog/get-one-blog/67287385cd8c804457ac80d7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"blog",
+								"get-one-blog",
+								"67287385cd8c804457ac80d7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a blog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Our rooms are incredible",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Surrounded by nature, this cozy cabin provides a peaceful retreat with a rustic charm. A warm fireplace and a king-sized bed make this room perfect for a quiet, comfortable stay away from the hustle of the city.",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ABIR/Downloads/Frame 1171276004.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/blog/add-blog",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"blog",
+								"add-blog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit a blog",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Our rooms are incredible",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/blog/update-blog/67287385cd8c804457ac80d7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"blog",
+								"update-blog",
+								"67287385cd8c804457ac80d7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a blog",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Our rooms are incredible",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/blog/delete-blog-by-id/6729b6fc7de596b8ffbd746e",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"blog",
+								"delete-blog-by-id",
+								"6729b6fc7de596b8ffbd746e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://192.168.12.158:4000",
+			"type": "default"
+		},
+		{
+			"key": "userToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "adminToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzIwNmM5ZWIwYzRiYjM0MjJmYjFhMjkiLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoidXNlciIsImZ1bGxOYW1lIjoiYWRtaW4gdXNlciIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkbWJiaFB6L2k2QTZOTW9yTHdKTTl0T1dUOTVjYU04b1pDcDlSb21Td1g1UmVuMk54bGdlVksiLCJyb2xlIjpbImFkbWluIl0sIm93bmVyQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwicGhvbmUiOiIwMTk5OTk5OTk5OSIsIm5vdGlmaWNhdGlvbnMiOlsiNjcyMGE0NTliNzFiNzc2YzkwOTQxZjk3IiwiNjcyMGE5OWI2OTRiMzk0NjUyMTdlNjM0IiwiNjcyMGFhODU2OTRiMzk0NjUyMTdlNjNiIiwiNjcyMGFkYmJiY2U3OGMwMTA0MzhjM2JlIiwiNjcyMGFkY2JiY2U3OGMwMTA0MzhjM2M2IiwiNjcyMGFlMjRiY2U3OGMwMTA0MzhjM2NmIiwiNjcyMGFlMmFiY2U3OGMwMTA0MzhjM2Q3IiwiNjcyMGFlNGNjNTI4ZmVjM2FmMjUzZTdlIiwiNjcyMGFlNTFjNTI4ZmVjM2FmMjUzZTg2IiwiNjcyMGFlYWNlMTM0MTVlMzU2ZmE2YmQ3IiwiNjcyMGFlYWZlMTM0MTVlMzU2ZmE2YmRmIiwiNjcyMGFlZTNhM2YzZmI5MDdiNjIzYzA3IiwiNjcyMGFlZmNhM2YzZmI5MDdiNjIzYzBmIiwiNjcyNWY2NDZhZDcwODU1ZjliOGRkZjNiIiwiNjcyNWY2ZWY2OTk1YzU0YWJmYTUyM2ZjIiwiNjcyNjAwNThiODU0MGQ2ZjkyZWM0M2MzIiwiNjcyNzA1MDkyMTFhNmY0M2RhYWQ0ODFmIiwiNjcyNzUzMmI4NmJlYmM5NWU4ZjFhOTUyIiwiNjcyOWQ3MGYzYWQ5YzJlZTM0NTRkNDk0IiwiNjcyOWQ3MjQzYWQ5YzJlZTM0NTRkNDljIiwiNjcyOWQ3MmIzYWQ5YzJlZTM0NTRkNGE0IiwiNjcyOWQ3MzQzYWQ5YzJlZTM0NTRkNGFjIiwiNjcyZWYzMWYzMzQ4NmM5NjJjY2JkNTNjIiwiNjcyZWYzZGUzMzQ4NmM5NjJjY2JkNTQ4Il0sImlzT3duZXIiOmZhbHNlLCJlbWFpbFZlcmlmaWVkIjpmYWxzZSwiZW1haWxWZXJpZnlDb2RlIjoiMTA0NiIsImlzQWN0aXZlIjp0cnVlLCJpc0xvY2tlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMTAtMjlUMDU6MDM6MjYuNTAxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTEtMDlUMDU6MzI6MTUuMDYzWiIsIl9fdiI6MjQsImxvZ2luVHlwZSI6ImVtYWlsIiwicHJvcGVydGllcyI6W10sInJlc2VydmF0aW9ucyI6W10sImludmVzdG9yQXBwbGljYXRpb25TdGF0dXMiOiJub3RBcHBsaWVkIiwiaXNJbnZlc3RvciI6ZmFsc2UsInJvb21zIjowLCJpYXQiOjE3MzExMzA4OTEsImV4cCI6MTczMTIxNzI5MX0.MjE3T9B5MzDUKqp8Ihub1qzWvjhM2RuIzZy4WGQpBSM",
+			"type": "string"
+		}
+	]
+}
