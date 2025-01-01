@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema(
       required: [true, "please provide email"],
       unique: true,
     },
+    guestId: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
     location: {
       type: String,
     },
